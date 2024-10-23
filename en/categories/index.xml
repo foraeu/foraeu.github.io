@@ -1,14 +1,14 @@
 <?xml version="1.0" encoding="utf-8" standalone="yes"?>
 <rss version="2.0" xmlns:atom="http://www.w3.org/2005/Atom">
   <channel>
-    <title>Series on Foraeu Blog</title>
-    <link>http://localhost:1313/series/</link>
-    <description>Recent content in Series on Foraeu Blog</description>
+    <title>Categories on Foraeu Blog</title>
+    <link>http://localhost:1313/en/categories/</link>
+    <description>Recent content in Categories on Foraeu Blog</description>
     <generator>Hugo -- gohugo.io</generator>
-    <language>en</language>
+    <language>zh-cn</language>
     <managingEditor>youremail@example.com (Foraeu)</managingEditor>
     <webMaster>youremail@example.com (Foraeu)</webMaster>
     <copyright>© 2024 Foraeu</copyright>
-    <atom:link href="http://localhost:1313/series/index.xml" rel="self" type="application/rss+xml" />
+    <atom:link href="http://localhost:1313/en/categories/index.xml" rel="self" type="application/rss+xml" />
   </channel>
 </rss>

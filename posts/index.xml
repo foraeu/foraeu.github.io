@@ -1,31 +1,21 @@
 <?xml version="1.0" encoding="utf-8" standalone="yes"?>
 <rss version="2.0" xmlns:atom="http://www.w3.org/2005/Atom">
   <channel>
-    <title>Foraeu Blog</title>
-    <link>http://localhost:1313/</link>
-    <description>Recent content on Foraeu Blog</description>
+    <title>Posts on Foraeu Blog</title>
+    <link>http://localhost:1313/posts/</link>
+    <description>Recent content in Posts on Foraeu Blog</description>
     <generator>Hugo -- gohugo.io</generator>
     <language>en</language>
     <managingEditor>youremail@example.com (Foraeu)</managingEditor>
     <webMaster>youremail@example.com (Foraeu)</webMaster>
     <copyright>© 2024 Foraeu</copyright>
-    <lastBuildDate>Thu, 24 Oct 2024 01:53:18 +0800</lastBuildDate><atom:link href="http://localhost:1313/index.xml" rel="self" type="application/rss+xml" />
+    <lastBuildDate>Thu, 24 Oct 2024 01:53:18 +0800</lastBuildDate><atom:link href="http://localhost:1313/posts/index.xml" rel="self" type="application/rss+xml" />
     <item>
       <title>First</title>
       <link>http://localhost:1313/posts/first/</link>
       <pubDate>Thu, 24 Oct 2024 01:53:18 +0800</pubDate>
       <author>youremail@example.com (Foraeu)</author>
       <guid>http://localhost:1313/posts/first/</guid>
-      <description></description>
-      
-    </item>
-    
-    <item>
-      <title>About</title>
-      <link>http://localhost:1313/about/</link>
-      <pubDate>Wed, 23 Oct 2024 23:46:17 +0800</pubDate>
-      <author>youremail@example.com (Foraeu)</author>
-      <guid>http://localhost:1313/about/</guid>
       <description></description>
       
     </item>
