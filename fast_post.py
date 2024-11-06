@@ -21,7 +21,6 @@ def create_markdown_post():
         with open(markdown_file_path, 'w', encoding='utf-8') as md_file:
             md_file.write(f"---\n")
             md_file.write(f'title: "{title}"\n')
-            md_file.write(f"showBreadcrumbs: true\n")
             md_file.write(f"date: {datetime.now().strftime('%Y-%m-%dT%H:%M:%S+08:00')}\n")
             md_file.write(f"draft: false\n")
             md_file.write(f'tags: {tags}\n')
