@@ -1,7 +1,7 @@
 import sys
 import os
 from datetime import datetime
-from PyQt5.QtWidgets import QApplication, QWidget, QVBoxLayout, QLabel, QLineEdit, QTextEdit, QPushButton, QMessageBox
+from PyQt6.QtWidgets import QApplication, QWidget, QVBoxLayout, QLabel, QLineEdit, QTextEdit, QPushButton, QMessageBox
 
 class MarkdownGenerator(QWidget):
     def __init__(self):
@@ -75,5 +75,5 @@ if __name__ == "__main__":
     app = QApplication(sys.argv)
     window = MarkdownGenerator()
     window.show()
-    sys.exit(app.exec_())
+    sys.exit(app.exec())
 
