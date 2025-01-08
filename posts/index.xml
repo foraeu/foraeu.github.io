@@ -1,1 +1,485 @@
-<?xml version="1.0" encoding="utf-8" standalone="yes"?><rss version="2.0" xmlns:atom="http://www.w3.org/2005/Atom"><channel><title>Foraeu Blog</title><link>https://foraeu.github.io/posts/</link><description>Recent content on Foraeu Blog</description><generator>Hugo -- gohugo.io</generator><language>zh-cn</language><copyright>© 2024 Foraeu</copyright><lastBuildDate>Tue, 19 Nov 2024 21:19:35 +0800</lastBuildDate><atom:link href="https://foraeu.github.io/posts/index.xml" rel="self" type="application/rss+xml"/><item><title>Blowfish主题：更cool的悬浮导航栏</title><link>https://foraeu.github.io/posts/4/</link><pubDate>Tue, 19 Nov 2024 21:19:35 +0800</pubDate><guid>https://foraeu.github.io/posts/4/</guid><description/></item><item><title>矩阵合并的优化</title><link>https://foraeu.github.io/posts/3/</link><pubDate>Wed, 13 Nov 2024 19:31:18 +0800</pubDate><guid>https://foraeu.github.io/posts/3/</guid><description/></item><item><title>一首小诗</title><link>https://foraeu.github.io/posts/2/</link><pubDate>Thu, 07 Nov 2024 03:07:51 +0800</pubDate><guid>https://foraeu.github.io/posts/2/</guid><description/></item><item><title>距离计算的优化方法</title><link>https://foraeu.github.io/posts/1/</link><pubDate>Wed, 30 Oct 2024 18:35:47 +0800</pubDate><guid>https://foraeu.github.io/posts/1/</guid><description/></item><item><title>Hello World</title><link>https://foraeu.github.io/posts/0/</link><pubDate>Sat, 26 Oct 2024 00:00:00 +0000</pubDate><guid>https://foraeu.github.io/posts/0/</guid><description/></item></channel></rss>
+<?xml version="1.0" encoding="utf-8" standalone="yes"?><rss version="2.0" xmlns:atom="http://www.w3.org/2005/Atom"><channel><title>Posts on Foraeu Blog</title><link>https://example.org/posts/</link><description>Recent content in Posts on Foraeu Blog</description><generator>Hugo</generator><language>en-us</language><lastBuildDate>Sun, 05 Jan 2025 00:00:00 +0000</lastBuildDate><atom:link href="https://example.org/posts/index.xml" rel="self" type="application/rss+xml"/><item><title>Markdown Syntax Guide</title><link>https://example.org/posts/markdown-guide/</link><pubDate>Sun, 05 Jan 2025 00:00:00 +0000</pubDate><guid>https://example.org/posts/markdown-guide/</guid><description>&lt;p>Markdown is a lightweight and easy-to-use syntax for styling all forms of writing. This guide will cover the essential elements you might need when writing content for your Hugo website.&lt;/p>
+&lt;hr>
+&lt;h2 id="headings">Headings&lt;/h2>
+&lt;p>Use &lt;code>#&lt;/code> symbols for headings. The number of &lt;code>#&lt;/code> indicates the level of the heading.&lt;/p>
+&lt;div class="highlight">&lt;pre tabindex="0" style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4;">&lt;code class="language-markdown" data-lang="markdown">&lt;span style="display:flex;">&lt;span># H1 Heading
+&lt;/span>&lt;/span>&lt;span style="display:flex;">&lt;span>&lt;span style="color:#75715e">## H2 Heading
+&lt;/span>&lt;/span>&lt;/span>&lt;span style="display:flex;">&lt;span>&lt;span style="color:#75715e">### H3 Heading
+&lt;/span>&lt;/span>&lt;/span>&lt;span style="display:flex;">&lt;span>&lt;span style="color:#75715e">#### H4 Heading
+&lt;/span>&lt;/span>&lt;/span>&lt;span style="display:flex;">&lt;span>&lt;span style="color:#75715e">##### H5 Heading
+&lt;/span>&lt;/span>&lt;/span>&lt;span style="display:flex;">&lt;span>&lt;span style="color:#75715e">###### H6 Heading
+&lt;/span>&lt;/span>&lt;/span>&lt;/code>&lt;/pre>&lt;/div>&lt;h1 id="welcome-to-my-blog">Welcome to My Blog&lt;/h1>
+&lt;h2 id="about-me">About Me&lt;/h2>
+&lt;h3 id="interests">Interests&lt;/h3>
+&lt;h4 id="projects">Projects&lt;/h4>
+&lt;h5 id="achievements">Achievements&lt;/h5>
+&lt;h6 id="contact-information">Contact Information&lt;/h6>
+&lt;hr>
+&lt;h2 id="paragraphs-and-line-breaks">Paragraphs and Line Breaks&lt;/h2>
+&lt;p>Paragraphs are created by leaving blank lines between blocks of text. For line breaks within a paragraph, end the line with two spaces.&lt;/p></description></item><item><title>Blowfish主题：更cool的悬浮导航栏</title><link>https://example.org/posts/island/</link><pubDate>Tue, 19 Nov 2024 21:19:35 +0800</pubDate><guid>https://example.org/posts/island/</guid><description>&lt;h2 id="缘起">缘起&lt;/h2>
+&lt;p>为什么要去自定义一个头部导航栏？其实&lt;code>blowfish&lt;/code>本身已经提供了很多的样式，比如最基本的&lt;code>basic&lt;/code>，还有各种的&lt;code>fixed&lt;/code>。只论实用性的话，或许&lt;code>blowfish&lt;/code>自带的这些已经很好了，看起来简约大方。但是根据自己的想法去diy一个看起来cool的设计，可能是不少折腾网站的人都会踩过的坑吧。&lt;/p>
+&lt;p>设计这个菜单栏的想法来自&lt;a href="https://www.jrhim.com/">加绒&lt;/a>的&lt;a href="https://www.jrhim.com/posts/series-decorating/island-header/">Hugo Blowfish 自定义：导航栏上磨砂岛&lt;/a>，可能是看惯了自己原本的fixed导航栏，第一次看到这种居中悬浮的设计觉得挺有意思。这位博主在文中描述了最重要的几个部分，并将源代码放在文末。对于我这种见好就收的白嫖党，第一想法肯定是二话不说咣咣复制。但是，遗憾的是，文末的html文件似乎失效了，于是乎只能摸着石头过河，从蛛丝马迹中尝试复现。&lt;/p>
+&lt;h2 id="设计想法">设计想法&lt;/h2>
+&lt;p>菜单栏的设计包括以下几个方面：&lt;/p>
+&lt;ol>
+&lt;li>悬浮居中，边框圆角&lt;/li>
+&lt;li>长度适中，蓝绿渐变&lt;/li>
+&lt;li>下划隐藏，上划显示&lt;/li>
+&lt;li>顶部透明，逐渐模糊&lt;/li>
+&lt;/ol>
+&lt;p>对于我这种只学过一点点编程，而且从没学过前端的新手来说，单独靠自己是完全不可能实现这些想法的。于是，我尝试把想法转译成具体的命令，借助AI帮我完成。恰好github有教育版免费的Copilot（非常nice），可以使用的模型有Clade 3.5 Sonnet、GPT 4和o1 mini等。&lt;/p>
+&lt;p>接下来就是各种各样的试错环节，报错是千奇百怪的，比如导航栏消失了，按钮点不动，颜色使用一直不对等情况，反正挺考验人的心态。最后我给出的命令是让ai参照原本的basic.html去写，非必要不更改。在几个大模型中，只有Clade给出了正确答案。&lt;/p>
+&lt;h2 id="实现">实现&lt;/h2>
+&lt;p>首先需要新建&lt;code>/layouts/partials/header/float.html&lt;/code>文件，然后在&lt;code>params.toml&lt;/code>中将header选项下的layout设置成float。接下来将这段代码复制到&lt;code>float.html&lt;/code>中：&lt;/p>
+&lt;div class="collapse-panel">
+ &lt;div class="collapse-header">
+ &lt;span class="collapse-title">float.html&lt;/span>
+ &lt;span class="collapse-icon">▼&lt;/span>
+ &lt;/div>
+ &lt;div class="collapse-content">
+ &lt;div class="collapse-inner">
+ &lt;div class="highlight">&lt;pre tabindex="0" style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4;">&lt;code class="language-html" data-lang="html">&lt;span style="display:flex;">&lt;span>&lt;span style="color:#75715e">&amp;lt;!-- 更新滚动控制脚本 --&amp;gt;&lt;/span>
+&lt;/span>&lt;/span>&lt;span style="display:flex;">&lt;span>&lt;span style="color:#75715e">&amp;lt;!-- 更新滚动控制脚本 --&amp;gt;&lt;/span>
+&lt;/span>&lt;/span>&lt;span style="display:flex;">&lt;span>&amp;lt;&lt;span style="color:#f92672">script&lt;/span>&amp;gt;
+&lt;/span>&lt;/span>&lt;span style="display:flex;">&lt;span>&lt;span style="color:#66d9ef">let&lt;/span> &lt;span style="color:#a6e22e">lastScrollTop&lt;/span> &lt;span style="color:#f92672">=&lt;/span> &lt;span style="color:#ae81ff">0&lt;/span>;
+&lt;/span>&lt;/span>&lt;span style="display:flex;">&lt;span>&lt;span style="color:#66d9ef">let&lt;/span> &lt;span style="color:#a6e22e">lastScrollDirection&lt;/span> &lt;span style="color:#f92672">=&lt;/span> &lt;span style="color:#ae81ff">0&lt;/span>;
+&lt;/span>&lt;/span>&lt;span style="display:flex;">&lt;span>&lt;span style="color:#66d9ef">let&lt;/span> &lt;span style="color:#a6e22e">island_header_style_top&lt;/span> &lt;span style="color:#f92672">=&lt;/span> &lt;span style="color:#ae81ff">15&lt;/span>;
+&lt;/span>&lt;/span>&lt;span style="display:flex;">&lt;span>&lt;span style="color:#66d9ef">let&lt;/span> &lt;span style="color:#a6e22e">accumulated_scroll&lt;/span> &lt;span style="color:#f92672">=&lt;/span> &lt;span style="color:#ae81ff">0&lt;/span>;
+&lt;/span>&lt;/span>&lt;span style="display:flex;">&lt;span>
+&lt;/span>&lt;/span>&lt;span style="display:flex;">&lt;span>window.&lt;span style="color:#a6e22e">addEventListener&lt;/span>(&lt;span style="color:#e6db74">&amp;#34;scroll&amp;#34;&lt;/span>, &lt;span style="color:#66d9ef">function&lt;/span> () {
+&lt;/span>&lt;/span>&lt;span style="display:flex;">&lt;span> &lt;span style="color:#66d9ef">const&lt;/span> &lt;span style="color:#a6e22e">scroll&lt;/span> &lt;span style="color:#f92672">=&lt;/span> window.&lt;span style="color:#a6e22e">pageYOffset&lt;/span> &lt;span style="color:#f92672">||&lt;/span> document.&lt;span style="color:#a6e22e">documentElement&lt;/span>.&lt;span style="color:#a6e22e">scrollTop&lt;/span> &lt;span style="color:#f92672">||&lt;/span> document.&lt;span style="color:#a6e22e">body&lt;/span>.&lt;span style="color:#a6e22e">scrollTop&lt;/span> &lt;span style="color:#f92672">||&lt;/span> &lt;span style="color:#ae81ff">0&lt;/span>;
+&lt;/span>&lt;/span>&lt;span style="display:flex;">&lt;span> &lt;span style="color:#66d9ef">let&lt;/span> &lt;span style="color:#a6e22e">currScrollDirection&lt;/span> &lt;span style="color:#f92672">=&lt;/span> &lt;span style="color:#a6e22e">scroll&lt;/span> &lt;span style="color:#f92672">-&lt;/span> &lt;span style="color:#a6e22e">lastScrollTop&lt;/span> &lt;span style="color:#f92672">&amp;gt;&lt;/span> &lt;span style="color:#ae81ff">0&lt;/span> &lt;span style="color:#f92672">?&lt;/span> &lt;span style="color:#ae81ff">1&lt;/span> &lt;span style="color:#f92672">:&lt;/span> &lt;span style="color:#f92672">-&lt;/span>&lt;span style="color:#ae81ff">1&lt;/span>;
+&lt;/span>&lt;/span>&lt;span style="display:flex;">&lt;span> 
+&lt;/span>&lt;/span>&lt;span style="display:flex;">&lt;span> &lt;span style="color:#66d9ef">const&lt;/span> &lt;span style="color:#a6e22e">island_header&lt;/span> &lt;span style="color:#f92672">=&lt;/span> document.&lt;span style="color:#a6e22e">getElementById&lt;/span>(&lt;span style="color:#e6db74">&amp;#34;island-header&amp;#34;&lt;/span>);
+&lt;/span>&lt;/span>&lt;span style="display:flex;">&lt;span> &lt;span style="color:#66d9ef">const&lt;/span> &lt;span style="color:#a6e22e">subheader&lt;/span> &lt;span style="color:#f92672">=&lt;/span> document.&lt;span style="color:#a6e22e">querySelector&lt;/span>(&lt;span style="color:#e6db74">&amp;#39;.main-menu + .main-menu&amp;#39;&lt;/span>);
+&lt;/span>&lt;/span>&lt;span style="display:flex;">&lt;span> 
+&lt;/span>&lt;/span>&lt;span style="display:flex;">&lt;span> &lt;span style="color:#75715e">// 计算透明度和模糊度
+&lt;/span>&lt;/span>&lt;/span>&lt;span style="display:flex;">&lt;span>&lt;span style="color:#75715e">&lt;/span> &lt;span style="color:#66d9ef">const&lt;/span> &lt;span style="color:#a6e22e">opacity&lt;/span> &lt;span style="color:#f92672">=&lt;/span> Math.&lt;span style="color:#a6e22e">min&lt;/span>(&lt;span style="color:#a6e22e">scroll&lt;/span> &lt;span style="color:#f92672">/&lt;/span> &lt;span style="color:#ae81ff">300&lt;/span>, &lt;span style="color:#ae81ff">0.9&lt;/span>);
+&lt;/span>&lt;/span>&lt;span style="display:flex;">&lt;span> &lt;span style="color:#66d9ef">const&lt;/span> &lt;span style="color:#a6e22e">blur&lt;/span> &lt;span style="color:#f92672">=&lt;/span> Math.&lt;span style="color:#a6e22e">min&lt;/span>(&lt;span style="color:#a6e22e">scroll&lt;/span> &lt;span style="color:#f92672">/&lt;/span> &lt;span style="color:#ae81ff">100&lt;/span> &lt;span style="color:#f92672">*&lt;/span> &lt;span style="color:#ae81ff">10&lt;/span>, &lt;span style="color:#ae81ff">10&lt;/span>);
+&lt;/span>&lt;/span>&lt;span style="display:flex;">&lt;span> 
+&lt;/span>&lt;/span>&lt;span style="display:flex;">&lt;span> &lt;span style="color:#75715e">// 应用背景和模糊效果
+&lt;/span>&lt;/span>&lt;/span>&lt;span style="display:flex;">&lt;span>&lt;span style="color:#75715e">&lt;/span> &lt;span style="color:#a6e22e">island_header&lt;/span>.&lt;span style="color:#a6e22e">style&lt;/span>.&lt;span style="color:#a6e22e">backgroundColor&lt;/span> &lt;span style="color:#f92672">=&lt;/span> &lt;span style="color:#e6db74">`rgba(255, 255, 255, &lt;/span>&lt;span style="color:#e6db74">${&lt;/span>&lt;span style="color:#a6e22e">opacity&lt;/span>&lt;span style="color:#e6db74">}&lt;/span>&lt;span style="color:#e6db74">)`&lt;/span>;
+&lt;/span>&lt;/span>&lt;span style="display:flex;">&lt;span> &lt;span style="color:#a6e22e">island_header&lt;/span>.&lt;span style="color:#a6e22e">style&lt;/span>.&lt;span style="color:#a6e22e">backdropFilter&lt;/span> &lt;span style="color:#f92672">=&lt;/span> &lt;span style="color:#e6db74">`blur(&lt;/span>&lt;span style="color:#e6db74">${&lt;/span>&lt;span style="color:#a6e22e">blur&lt;/span>&lt;span style="color:#e6db74">}&lt;/span>&lt;span style="color:#e6db74">px)`&lt;/span>;
+&lt;/span>&lt;/span>&lt;span style="display:flex;">&lt;span> &lt;span style="color:#66d9ef">if&lt;/span>(&lt;span style="color:#a6e22e">subheader&lt;/span>) {
+&lt;/span>&lt;/span>&lt;span style="display:flex;">&lt;span> &lt;span style="color:#a6e22e">subheader&lt;/span>.&lt;span style="color:#a6e22e">style&lt;/span>.&lt;span style="color:#a6e22e">backgroundColor&lt;/span> &lt;span style="color:#f92672">=&lt;/span> &lt;span style="color:#e6db74">`rgba(255, 255, 255, &lt;/span>&lt;span style="color:#e6db74">${&lt;/span>&lt;span style="color:#a6e22e">opacity&lt;/span>&lt;span style="color:#e6db74">}&lt;/span>&lt;span style="color:#e6db74">)`&lt;/span>;
+&lt;/span>&lt;/span>&lt;span style="display:flex;">&lt;span> &lt;span style="color:#a6e22e">subheader&lt;/span>.&lt;span style="color:#a6e22e">style&lt;/span>.&lt;span style="color:#a6e22e">backdropFilter&lt;/span> &lt;span style="color:#f92672">=&lt;/span> &lt;span style="color:#e6db74">`blur(&lt;/span>&lt;span style="color:#e6db74">${&lt;/span>&lt;span style="color:#a6e22e">blur&lt;/span>&lt;span style="color:#e6db74">}&lt;/span>&lt;span style="color:#e6db74">px)`&lt;/span>;
+&lt;/span>&lt;/span>&lt;span style="display:flex;">&lt;span> }
+&lt;/span>&lt;/span>&lt;span style="display:flex;">&lt;span> 
+&lt;/span>&lt;/span>&lt;span style="display:flex;">&lt;span> &lt;span style="color:#75715e">// 处理滚动隐藏逻辑
+&lt;/span>&lt;/span>&lt;/span>&lt;span style="display:flex;">&lt;span>&lt;span style="color:#75715e">&lt;/span> &lt;span style="color:#66d9ef">if&lt;/span> (&lt;span style="color:#a6e22e">scroll&lt;/span> &lt;span style="color:#f92672">&amp;gt;&lt;/span> &lt;span style="color:#ae81ff">100&lt;/span>) {
+&lt;/span>&lt;/span>&lt;span style="display:flex;">&lt;span> &lt;span style="color:#66d9ef">if&lt;/span> (&lt;span style="color:#a6e22e">currScrollDirection&lt;/span> &lt;span style="color:#f92672">!==&lt;/span> &lt;span style="color:#a6e22e">lastScrollDirection&lt;/span>) {
+&lt;/span>&lt;/span>&lt;span style="display:flex;">&lt;span> &lt;span style="color:#a6e22e">accumulated_scroll&lt;/span> &lt;span style="color:#f92672">=&lt;/span> &lt;span style="color:#ae81ff">0&lt;/span>;
+&lt;/span>&lt;/span>&lt;span style="display:flex;">&lt;span> } &lt;span style="color:#66d9ef">else&lt;/span> {
+&lt;/span>&lt;/span>&lt;span style="display:flex;">&lt;span> &lt;span style="color:#a6e22e">accumulated_scroll&lt;/span> &lt;span style="color:#f92672">+=&lt;/span> Math.&lt;span style="color:#a6e22e">abs&lt;/span>(&lt;span style="color:#a6e22e">scroll&lt;/span> &lt;span style="color:#f92672">-&lt;/span> &lt;span style="color:#a6e22e">lastScrollTop&lt;/span>);
+&lt;/span>&lt;/span>&lt;span style="display:flex;">&lt;span> }
+&lt;/span>&lt;/span>&lt;span style="display:flex;">&lt;span> 
+&lt;/span>&lt;/span>&lt;span style="display:flex;">&lt;span> &lt;span style="color:#66d9ef">if&lt;/span> (&lt;span style="color:#a6e22e">accumulated_scroll&lt;/span> &lt;span style="color:#f92672">&amp;gt;&lt;/span> &lt;span style="color:#ae81ff">50&lt;/span> &lt;span style="color:#f92672">||&lt;/span> &lt;span style="color:#a6e22e">currScrollDirection&lt;/span> &lt;span style="color:#f92672">==&lt;/span> &lt;span style="color:#f92672">-&lt;/span>&lt;span style="color:#ae81ff">1&lt;/span>) {
+&lt;/span>&lt;/span>&lt;span style="display:flex;">&lt;span> &lt;span style="color:#75715e">// 计算新的top值
+&lt;/span>&lt;/span>&lt;/span>&lt;span style="display:flex;">&lt;span>&lt;span style="color:#75715e">&lt;/span> &lt;span style="color:#a6e22e">island_header_style_top&lt;/span> &lt;span style="color:#f92672">=&lt;/span> &lt;span style="color:#a6e22e">currScrollDirection&lt;/span> &lt;span style="color:#f92672">===&lt;/span> &lt;span style="color:#ae81ff">1&lt;/span> &lt;span style="color:#f92672">?&lt;/span> 
+&lt;/span>&lt;/span>&lt;span style="display:flex;">&lt;span> Math.&lt;span style="color:#a6e22e">max&lt;/span>(&lt;span style="color:#f92672">-&lt;/span>&lt;span style="color:#ae81ff">100&lt;/span>, &lt;span style="color:#a6e22e">island_header_style_top&lt;/span> &lt;span style="color:#f92672">-&lt;/span> &lt;span style="color:#ae81ff">15&lt;/span>) &lt;span style="color:#f92672">:&lt;/span> &lt;span style="color:#75715e">// 向下滚动
+&lt;/span>&lt;/span>&lt;/span>&lt;span style="display:flex;">&lt;span>&lt;span style="color:#75715e">&lt;/span> Math.&lt;span style="color:#a6e22e">min&lt;/span>(&lt;span style="color:#ae81ff">15&lt;/span>, &lt;span style="color:#a6e22e">island_header_style_top&lt;/span> &lt;span style="color:#f92672">+&lt;/span> &lt;span style="color:#ae81ff">15&lt;/span>); &lt;span style="color:#75715e">// 向上滚动
+&lt;/span>&lt;/span>&lt;/span>&lt;span style="display:flex;">&lt;span>&lt;span style="color:#75715e">&lt;/span> 
+&lt;/span>&lt;/span>&lt;span style="display:flex;">&lt;span> &lt;span style="color:#75715e">// 应用变换
+&lt;/span>&lt;/span>&lt;/span>&lt;span style="display:flex;">&lt;span>&lt;span style="color:#75715e">&lt;/span> &lt;span style="color:#a6e22e">island_header&lt;/span>.&lt;span style="color:#a6e22e">style&lt;/span>.&lt;span style="color:#a6e22e">transform&lt;/span> &lt;span style="color:#f92672">=&lt;/span> &lt;span style="color:#e6db74">`translateX(-50%) translateY(&lt;/span>&lt;span style="color:#e6db74">${&lt;/span>&lt;span style="color:#a6e22e">island_header_style_top&lt;/span>&lt;span style="color:#e6db74">}&lt;/span>&lt;span style="color:#e6db74">px)`&lt;/span>;
+&lt;/span>&lt;/span>&lt;span style="display:flex;">&lt;span> &lt;span style="color:#66d9ef">if&lt;/span>(&lt;span style="color:#a6e22e">subheader&lt;/span>) {
+&lt;/span>&lt;/span>&lt;span style="display:flex;">&lt;span> &lt;span style="color:#a6e22e">subheader&lt;/span>.&lt;span style="color:#a6e22e">style&lt;/span>.&lt;span style="color:#a6e22e">transform&lt;/span> &lt;span style="color:#f92672">=&lt;/span> &lt;span style="color:#e6db74">`translateX(-50%) translateY(&lt;/span>&lt;span style="color:#e6db74">${&lt;/span>&lt;span style="color:#a6e22e">island_header_style_top&lt;/span> &lt;span style="color:#f92672">+&lt;/span> &lt;span style="color:#ae81ff">50&lt;/span>&lt;span style="color:#e6db74">}&lt;/span>&lt;span style="color:#e6db74">px)`&lt;/span>;
+&lt;/span>&lt;/span>&lt;span style="display:flex;">&lt;span> }
+&lt;/span>&lt;/span>&lt;span style="display:flex;">&lt;span> }
+&lt;/span>&lt;/span>&lt;span style="display:flex;">&lt;span> }
+&lt;/span>&lt;/span>&lt;span style="display:flex;">&lt;span> 
+&lt;/span>&lt;/span>&lt;span style="display:flex;">&lt;span> &lt;span style="color:#a6e22e">lastScrollTop&lt;/span> &lt;span style="color:#f92672">=&lt;/span> &lt;span style="color:#a6e22e">scroll&lt;/span>;
+&lt;/span>&lt;/span>&lt;span style="display:flex;">&lt;span> &lt;span style="color:#a6e22e">lastScrollDirection&lt;/span> &lt;span style="color:#f92672">=&lt;/span> &lt;span style="color:#a6e22e">currScrollDirection&lt;/span>;
+&lt;/span>&lt;/span>&lt;span style="display:flex;">&lt;span>});
+&lt;/span>&lt;/span>&lt;span style="display:flex;">&lt;span>&amp;lt;/&lt;span style="color:#f92672">script&lt;/span>&amp;gt;
+&lt;/span>&lt;/span>&lt;span style="display:flex;">&lt;span>
+&lt;/span>&lt;/span>&lt;span style="display:flex;">&lt;span>&lt;span style="color:#75715e">&amp;lt;!-- 主要导航栏容器 --&amp;gt;&lt;/span>
+&lt;/span>&lt;/span>&lt;span style="display:flex;">&lt;span>&amp;lt;&lt;span style="color:#f92672">div&lt;/span> &lt;span style="color:#a6e22e">id&lt;/span>&lt;span style="color:#f92672">=&lt;/span>&lt;span style="color:#e6db74">&amp;#34;island-header&amp;#34;&lt;/span> &lt;span style="color:#a6e22e">style&lt;/span>&lt;span style="color:#f92672">=&lt;/span>&lt;span style="color:#e6db74">&amp;#34;
+&lt;/span>&lt;/span>&lt;/span>&lt;span style="display:flex;">&lt;span>&lt;span style="color:#e6db74"> position: fixed;
+&lt;/span>&lt;/span>&lt;/span>&lt;span style="display:flex;">&lt;span>&lt;span style="color:#e6db74"> top: 15px;
+&lt;/span>&lt;/span>&lt;/span>&lt;span style="display:flex;">&lt;span>&lt;span style="color:#e6db74"> left: 50%;
+&lt;/span>&lt;/span>&lt;/span>&lt;span style="display:flex;">&lt;span>&lt;span style="color:#e6db74"> transform: translateX(-50%);
+&lt;/span>&lt;/span>&lt;/span>&lt;span style="display:flex;">&lt;span>&lt;span style="color:#e6db74"> width: 90%; /* 移动端下宽度更大 */
+&lt;/span>&lt;/span>&lt;/span>&lt;span style="display:flex;">&lt;span>&lt;span style="color:#e6db74"> max-width: 900px;
+&lt;/span>&lt;/span>&lt;/span>&lt;span style="display:flex;">&lt;span>&lt;span style="color:#e6db74"> background: linear-gradient(
+&lt;/span>&lt;/span>&lt;/span>&lt;span style="display:flex;">&lt;span>&lt;span style="color:#e6db74"> 135deg, 
+&lt;/span>&lt;/span>&lt;/span>&lt;span style="display:flex;">&lt;span>&lt;span style="color:#e6db74"> rgba(255, 255, 255, 0.45),
+&lt;/span>&lt;/span>&lt;/span>&lt;span style="display:flex;">&lt;span>&lt;span style="color:#e6db74"> rgba(147, 197, 253, 0.35) 20%,
+&lt;/span>&lt;/span>&lt;/span>&lt;span style="display:flex;">&lt;span>&lt;span style="color:#e6db74"> rgba(167, 243, 208, 0.4) 50%,
+&lt;/span>&lt;/span>&lt;/span>&lt;span style="display:flex;">&lt;span>&lt;span style="color:#e6db74"> rgba(147, 197, 253, 0.35) 80%,
+&lt;/span>&lt;/span>&lt;/span>&lt;span style="display:flex;">&lt;span>&lt;span style="color:#e6db74"> rgba(110, 231, 183, 0.4)
+&lt;/span>&lt;/span>&lt;/span>&lt;span style="display:flex;">&lt;span>&lt;span style="color:#e6db74"> );
+&lt;/span>&lt;/span>&lt;/span>&lt;span style="display:flex;">&lt;span>&lt;span style="color:#e6db74"> backdrop-filter: blur(8px);
+&lt;/span>&lt;/span>&lt;/span>&lt;span style="display:flex;">&lt;span>&lt;span style="color:#e6db74"> border: 1px solid rgba(255, 255, 255, 0.45);
+&lt;/span>&lt;/span>&lt;/span>&lt;span style="display:flex;">&lt;span>&lt;span style="color:#e6db74"> border-radius: 0.75rem; /* 移动端圆角稍小 */
+&lt;/span>&lt;/span>&lt;/span>&lt;span style="display:flex;">&lt;span>&lt;span style="color:#e6db74"> box-shadow: 
+&lt;/span>&lt;/span>&lt;/span>&lt;span style="display:flex;">&lt;span>&lt;span style="color:#e6db74"> 0 4px 6px rgba(0, 0, 0, 0.03),
+&lt;/span>&lt;/span>&lt;/span>&lt;span style="display:flex;">&lt;span>&lt;span style="color:#e6db74"> 0 1px 3px rgba(147, 197, 253, 0.2) inset,
+&lt;/span>&lt;/span>&lt;/span>&lt;span style="display:flex;">&lt;span>&lt;span style="color:#e6db74"> 0 2px 6px rgba(167, 243, 208, 0.15) inset;
+&lt;/span>&lt;/span>&lt;/span>&lt;span style="display:flex;">&lt;span>&lt;span style="color:#e6db74"> transition: all 0.3s ease;
+&lt;/span>&lt;/span>&lt;/span>&lt;span style="display:flex;">&lt;span>&lt;span style="color:#e6db74"> z-index: 1000;
+&lt;/span>&lt;/span>&lt;/span>&lt;span style="display:flex;">&lt;span>&lt;span style="color:#e6db74"> padding: 0.25rem; /* 移动端内边距更小 */
+&lt;/span>&lt;/span>&lt;/span>&lt;span style="display:flex;">&lt;span>&lt;span style="color:#e6db74"> @media (min-width: 768px) { /* 桌面端样式 */
+&lt;/span>&lt;/span>&lt;/span>&lt;span style="display:flex;">&lt;span>&lt;span style="color:#e6db74"> width: 70%;
+&lt;/span>&lt;/span>&lt;/span>&lt;span style="display:flex;">&lt;span>&lt;span style="color:#e6db74"> padding: 0.25rem 0.5rem;
+&lt;/span>&lt;/span>&lt;/span>&lt;span style="display:flex;">&lt;span>&lt;span style="color:#e6db74"> border-radius: 1rem;
+&lt;/span>&lt;/span>&lt;/span>&lt;span style="display:flex;">&lt;span>&lt;span style="color:#e6db74"> }
+&lt;/span>&lt;/span>&lt;/span>&lt;span style="display:flex;">&lt;span>&lt;span style="color:#e6db74"> &amp;#34;&lt;/span>
+&lt;/span>&lt;/span>&lt;span style="display:flex;">&lt;span> &lt;span style="color:#a6e22e">class&lt;/span>&lt;span style="color:#f92672">=&lt;/span>&lt;span style="color:#e6db74">&amp;#34;main-menu flex items-center justify-between px-2 py-1 sm:px-6 md:justify-start space-x-3&amp;#34;&lt;/span>&amp;gt; 
+&lt;/span>&lt;/span>&lt;span style="display:flex;">&lt;span> 
+&lt;/span>&lt;/span>&lt;span style="display:flex;">&lt;span> {{ if .Site.Params.Logo }}
+&lt;/span>&lt;/span>&lt;span style="display:flex;">&lt;span> {{ $logo := resources.Get .Site.Params.Logo }}
+&lt;/span>&lt;/span>&lt;span style="display:flex;">&lt;span> {{ if $logo }}
+&lt;/span>&lt;/span>&lt;span style="display:flex;">&lt;span> &amp;lt;&lt;span style="color:#f92672">div&lt;/span>&amp;gt;
+&lt;/span>&lt;/span>&lt;span style="display:flex;">&lt;span> &amp;lt;&lt;span style="color:#f92672">a&lt;/span> &lt;span style="color:#a6e22e">href&lt;/span>&lt;span style="color:#f92672">=&lt;/span>&lt;span style="color:#e6db74">&amp;#34;{{ &amp;#34;&lt;/span>&lt;span style="color:#960050;background-color:#1e0010">&amp;#34;&lt;/span> &lt;span style="color:#960050;background-color:#1e0010">|&lt;/span> &lt;span style="color:#a6e22e">relLangURL&lt;/span> &lt;span style="color:#960050;background-color:#1e0010">}}&amp;#34;&lt;/span> &lt;span style="color:#a6e22e">class&lt;/span>&lt;span style="color:#f92672">=&lt;/span>&lt;span style="color:#e6db74">&amp;#34;flex&amp;#34;&lt;/span>&amp;gt;
+&lt;/span>&lt;/span>&lt;span style="display:flex;">&lt;span> &amp;lt;&lt;span style="color:#f92672">span&lt;/span> &lt;span style="color:#a6e22e">class&lt;/span>&lt;span style="color:#f92672">=&lt;/span>&lt;span style="color:#e6db74">&amp;#34;sr-only&amp;#34;&lt;/span>&amp;gt;{{ .Site.Title | markdownify }}&amp;lt;/&lt;span style="color:#f92672">span&lt;/span>&amp;gt;
+&lt;/span>&lt;/span>&lt;span style="display:flex;">&lt;span>
+&lt;/span>&lt;/span>&lt;span style="display:flex;">&lt;span> {{ if eq $logo.MediaType.SubType &amp;#34;svg&amp;#34; }}
+&lt;/span>&lt;/span>&lt;span style="display:flex;">&lt;span> &amp;lt;&lt;span style="color:#f92672">span&lt;/span> &lt;span style="color:#a6e22e">class&lt;/span>&lt;span style="color:#f92672">=&lt;/span>&lt;span style="color:#e6db74">&amp;#34;logo object-scale-down object-left nozoom&amp;#34;&lt;/span>&amp;gt;
+&lt;/span>&lt;/span>&lt;span style="display:flex;">&lt;span> {{ $logo.Content | safeHTML }}
+&lt;/span>&lt;/span>&lt;span style="display:flex;">&lt;span> &amp;lt;/&lt;span style="color:#f92672">span&lt;/span>&amp;gt;
+&lt;/span>&lt;/span>&lt;span style="display:flex;">&lt;span> {{ else }}
+&lt;/span>&lt;/span>&lt;span style="display:flex;">&lt;span> &amp;lt;&lt;span style="color:#f92672">img&lt;/span> &lt;span style="color:#a6e22e">src&lt;/span>&lt;span style="color:#f92672">=&lt;/span>&lt;span style="color:#e6db74">&amp;#34;{{ $logo.RelPermalink }}&amp;#34;&lt;/span> &lt;span style="color:#a6e22e">width&lt;/span>&lt;span style="color:#f92672">=&lt;/span>&lt;span style="color:#e6db74">&amp;#34;{{ div $logo.Width 2 }}&amp;#34;&lt;/span> &lt;span style="color:#a6e22e">height&lt;/span>&lt;span style="color:#f92672">=&lt;/span>&lt;span style="color:#e6db74">&amp;#34;{{ div $logo.Height 2 }}&amp;#34;&lt;/span>
+&lt;/span>&lt;/span>&lt;span style="display:flex;">&lt;span> &lt;span style="color:#a6e22e">class&lt;/span>&lt;span style="color:#f92672">=&lt;/span>&lt;span style="color:#e6db74">&amp;#34;logo max-h-[5rem] max-w-[5rem] object-scale-down object-left nozoom&amp;#34;&lt;/span> &lt;span style="color:#a6e22e">alt&lt;/span>&lt;span style="color:#f92672">=&lt;/span>&lt;span style="color:#e6db74">&amp;#34;{{ .Site.Title }}&amp;#34;&lt;/span> /&amp;gt;
+&lt;/span>&lt;/span>&lt;span style="display:flex;">&lt;span> {{ end }}
+&lt;/span>&lt;/span>&lt;span style="display:flex;">&lt;span>
+&lt;/span>&lt;/span>&lt;span style="display:flex;">&lt;span> &amp;lt;/&lt;span style="color:#f92672">a&lt;/span>&amp;gt;
+&lt;/span>&lt;/span>&lt;span style="display:flex;">&lt;span> &amp;lt;/&lt;span style="color:#f92672">div&lt;/span>&amp;gt;
+&lt;/span>&lt;/span>&lt;span style="display:flex;">&lt;span> {{ end }}
+&lt;/span>&lt;/span>&lt;span style="display:flex;">&lt;span> {{- end }}
+&lt;/span>&lt;/span>&lt;span style="display:flex;">&lt;span> &amp;lt;&lt;span style="color:#f92672">div&lt;/span> &lt;span style="color:#a6e22e">class&lt;/span>&lt;span style="color:#f92672">=&lt;/span>&lt;span style="color:#e6db74">&amp;#34;flex flex-1 items-center justify-between&amp;#34;&lt;/span>&amp;gt;
+&lt;/span>&lt;/span>&lt;span style="display:flex;">&lt;span> &amp;lt;&lt;span style="color:#f92672">nav&lt;/span> &lt;span style="color:#a6e22e">class&lt;/span>&lt;span style="color:#f92672">=&lt;/span>&lt;span style="color:#e6db74">&amp;#34;flex space-x-3&amp;#34;&lt;/span>&amp;gt;
+&lt;/span>&lt;/span>&lt;span style="display:flex;">&lt;span>
+&lt;/span>&lt;/span>&lt;span style="display:flex;">&lt;span> {{ if not .Site.Params.disableTextInHeader | default true }}
+&lt;/span>&lt;/span>&lt;span style="display:flex;">&lt;span> &amp;lt;&lt;span style="color:#f92672">a&lt;/span> &lt;span style="color:#a6e22e">href&lt;/span>&lt;span style="color:#f92672">=&lt;/span>&lt;span style="color:#e6db74">&amp;#34;{{ &amp;#34;&lt;/span>&lt;span style="color:#960050;background-color:#1e0010">&amp;#34;&lt;/span> &lt;span style="color:#960050;background-color:#1e0010">|&lt;/span> &lt;span style="color:#a6e22e">relLangURL&lt;/span> &lt;span style="color:#960050;background-color:#1e0010">}}&amp;#34;&lt;/span> &lt;span style="color:#a6e22e">class&lt;/span>&lt;span style="color:#f92672">=&lt;/span>&lt;span style="color:#e6db74">&amp;#34;text-base font-medium text-gray-500 hover:text-gray-900&amp;#34;&lt;/span>&amp;gt;{{
+&lt;/span>&lt;/span>&lt;span style="display:flex;">&lt;span> .Site.Title | markdownify
+&lt;/span>&lt;/span>&lt;span style="display:flex;">&lt;span> }}&amp;lt;/&lt;span style="color:#f92672">a&lt;/span>&amp;gt;
+&lt;/span>&lt;/span>&lt;span style="display:flex;">&lt;span> {{ end }}
+&lt;/span>&lt;/span>&lt;span style="display:flex;">&lt;span>
+&lt;/span>&lt;/span>&lt;span style="display:flex;">&lt;span> &amp;lt;/&lt;span style="color:#f92672">nav&lt;/span>&amp;gt;
+&lt;/span>&lt;/span>&lt;span style="display:flex;">&lt;span> &amp;lt;&lt;span style="color:#f92672">nav&lt;/span> &lt;span style="color:#a6e22e">class&lt;/span>&lt;span style="color:#f92672">=&lt;/span>&lt;span style="color:#e6db74">&amp;#34;hidden md:flex items-center space-x-5 md:ml-12 h-12&amp;#34;&lt;/span>&amp;gt;
+&lt;/span>&lt;/span>&lt;span style="display:flex;">&lt;span>
+&lt;/span>&lt;/span>&lt;span style="display:flex;">&lt;span> {{ if .Site.Menus.main }}
+&lt;/span>&lt;/span>&lt;span style="display:flex;">&lt;span> {{ range .Site.Menus.main }}
+&lt;/span>&lt;/span>&lt;span style="display:flex;">&lt;span> {{ partial &amp;#34;header/header-option.html&amp;#34; . }}
+&lt;/span>&lt;/span>&lt;span style="display:flex;">&lt;span> {{ end }}
+&lt;/span>&lt;/span>&lt;span style="display:flex;">&lt;span> {{ end }}
+&lt;/span>&lt;/span>&lt;span style="display:flex;">&lt;span>
+&lt;/span>&lt;/span>&lt;span style="display:flex;">&lt;span> {{ partial &amp;#34;translations.html&amp;#34; . }}
+&lt;/span>&lt;/span>&lt;span style="display:flex;">&lt;span>
+&lt;/span>&lt;/span>&lt;span style="display:flex;">&lt;span> {{ if .Site.Params.enableSearch | default false }}
+&lt;/span>&lt;/span>&lt;span style="display:flex;">&lt;span> &amp;lt;&lt;span style="color:#f92672">button&lt;/span> &lt;span style="color:#a6e22e">id&lt;/span>&lt;span style="color:#f92672">=&lt;/span>&lt;span style="color:#e6db74">&amp;#34;search-button&amp;#34;&lt;/span> &lt;span style="color:#a6e22e">aria-label&lt;/span>&lt;span style="color:#f92672">=&lt;/span>&lt;span style="color:#e6db74">&amp;#34;Search&amp;#34;&lt;/span> &lt;span style="color:#a6e22e">class&lt;/span>&lt;span style="color:#f92672">=&lt;/span>&lt;span style="color:#e6db74">&amp;#34;text-base hover:text-primary-600 dark:hover:text-primary-400&amp;#34;&lt;/span>
+&lt;/span>&lt;/span>&lt;span style="display:flex;">&lt;span> &lt;span style="color:#a6e22e">title&lt;/span>&lt;span style="color:#f92672">=&lt;/span>&lt;span style="color:#e6db74">&amp;#34;{{ i18n &amp;#34;&lt;/span> &lt;span style="color:#a6e22e">search&lt;/span>&lt;span style="color:#960050;background-color:#1e0010">.&lt;/span>&lt;span style="color:#a6e22e">open_button_title&lt;/span>&lt;span style="color:#960050;background-color:#1e0010">&amp;#34;&lt;/span> &lt;span style="color:#960050;background-color:#1e0010">}}&amp;#34;&lt;/span>&amp;gt;
+&lt;/span>&lt;/span>&lt;span style="display:flex;">&lt;span> {{ partial &amp;#34;icon.html&amp;#34; &amp;#34;search&amp;#34; }}
+&lt;/span>&lt;/span>&lt;span style="display:flex;">&lt;span> &amp;lt;/&lt;span style="color:#f92672">button&lt;/span>&amp;gt;
+&lt;/span>&lt;/span>&lt;span style="display:flex;">&lt;span> {{ end }}
+&lt;/span>&lt;/span>&lt;span style="display:flex;">&lt;span>
+&lt;/span>&lt;/span>&lt;span style="display:flex;">&lt;span> {{/* Appearance switch */}}
+&lt;/span>&lt;/span>&lt;span style="display:flex;">&lt;span> {{ if .Site.Params.footer.showAppearanceSwitcher | default false }}
+&lt;/span>&lt;/span>&lt;span style="display:flex;">&lt;span> &amp;lt;&lt;span style="color:#f92672">div&lt;/span>
+&lt;/span>&lt;/span>&lt;span style="display:flex;">&lt;span> &lt;span style="color:#a6e22e">class&lt;/span>&lt;span style="color:#f92672">=&lt;/span>&lt;span style="color:#e6db74">&amp;#34;{{ if .Site.Params.footer.showScrollToTop | default true -}} ltr:mr-14 rtl:ml-14 {{- end }} flex items-center&amp;#34;&lt;/span>&amp;gt;
+&lt;/span>&lt;/span>&lt;span style="display:flex;">&lt;span> &amp;lt;&lt;span style="color:#f92672">button&lt;/span> &lt;span style="color:#a6e22e">id&lt;/span>&lt;span style="color:#f92672">=&lt;/span>&lt;span style="color:#e6db74">&amp;#34;appearance-switcher&amp;#34;&lt;/span> &lt;span style="color:#a6e22e">aria-label&lt;/span>&lt;span style="color:#f92672">=&lt;/span>&lt;span style="color:#e6db74">&amp;#34;Dark mode switcher&amp;#34;&lt;/span> &lt;span style="color:#a6e22e">type&lt;/span>&lt;span style="color:#f92672">=&lt;/span>&lt;span style="color:#e6db74">&amp;#34;button&amp;#34;&lt;/span> &lt;span style="color:#a6e22e">class&lt;/span>&lt;span style="color:#f92672">=&lt;/span>&lt;span style="color:#e6db74">&amp;#34;text-base hover:text-primary-600 dark:hover:text-primary-400&amp;#34;&lt;/span>&amp;gt;
+&lt;/span>&lt;/span>&lt;span style="display:flex;">&lt;span> &amp;lt;&lt;span style="color:#f92672">div&lt;/span> &lt;span style="color:#a6e22e">class&lt;/span>&lt;span style="color:#f92672">=&lt;/span>&lt;span style="color:#e6db74">&amp;#34;flex items-center justify-center dark:hidden&amp;#34;&lt;/span>&amp;gt;
+&lt;/span>&lt;/span>&lt;span style="display:flex;">&lt;span> {{ partial &amp;#34;icon.html&amp;#34; &amp;#34;moon&amp;#34; }}
+&lt;/span>&lt;/span>&lt;span style="display:flex;">&lt;span> &amp;lt;/&lt;span style="color:#f92672">div&lt;/span>&amp;gt;
+&lt;/span>&lt;/span>&lt;span style="display:flex;">&lt;span> &amp;lt;&lt;span style="color:#f92672">div&lt;/span> &lt;span style="color:#a6e22e">class&lt;/span>&lt;span style="color:#f92672">=&lt;/span>&lt;span style="color:#e6db74">&amp;#34;items-center justify-center hidden dark:flex&amp;#34;&lt;/span>&amp;gt;
+&lt;/span>&lt;/span>&lt;span style="display:flex;">&lt;span> {{ partial &amp;#34;icon.html&amp;#34; &amp;#34;sun&amp;#34; }}
+&lt;/span>&lt;/span>&lt;span style="display:flex;">&lt;span> &amp;lt;/&lt;span style="color:#f92672">div&lt;/span>&amp;gt;
+&lt;/span>&lt;/span>&lt;span style="display:flex;">&lt;span> &amp;lt;/&lt;span style="color:#f92672">button&lt;/span>&amp;gt;
+&lt;/span>&lt;/span>&lt;span style="display:flex;">&lt;span> &amp;lt;/&lt;span style="color:#f92672">div&lt;/span>&amp;gt;
+&lt;/span>&lt;/span>&lt;span style="display:flex;">&lt;span> {{ end }}
+&lt;/span>&lt;/span>&lt;span style="display:flex;">&lt;span>
+&lt;/span>&lt;/span>&lt;span style="display:flex;">&lt;span> &amp;lt;/&lt;span style="color:#f92672">nav&lt;/span>&amp;gt;
+&lt;/span>&lt;/span>&lt;span style="display:flex;">&lt;span> &amp;lt;&lt;span style="color:#f92672">div&lt;/span> &lt;span style="color:#a6e22e">class&lt;/span>&lt;span style="color:#f92672">=&lt;/span>&lt;span style="color:#e6db74">&amp;#34;flex md:hidden items-center space-x-5 md:ml-12 h-12&amp;#34;&lt;/span>&amp;gt;
+&lt;/span>&lt;/span>&lt;span style="display:flex;">&lt;span>
+&lt;/span>&lt;/span>&lt;span style="display:flex;">&lt;span> &amp;lt;&lt;span style="color:#f92672">span&lt;/span>&amp;gt;&amp;lt;/&lt;span style="color:#f92672">span&lt;/span>&amp;gt;
+&lt;/span>&lt;/span>&lt;span style="display:flex;">&lt;span>
+&lt;/span>&lt;/span>&lt;span style="display:flex;">&lt;span> {{ partial &amp;#34;translations.html&amp;#34; . }}
+&lt;/span>&lt;/span>&lt;span style="display:flex;">&lt;span>
+&lt;/span>&lt;/span>&lt;span style="display:flex;">&lt;span> {{ if .Site.Params.enableSearch | default false }}
+&lt;/span>&lt;/span>&lt;span style="display:flex;">&lt;span> &amp;lt;&lt;span style="color:#f92672">button&lt;/span> &lt;span style="color:#a6e22e">id&lt;/span>&lt;span style="color:#f92672">=&lt;/span>&lt;span style="color:#e6db74">&amp;#34;search-button-mobile&amp;#34;&lt;/span> &lt;span style="color:#a6e22e">aria-label&lt;/span>&lt;span style="color:#f92672">=&lt;/span>&lt;span style="color:#e6db74">&amp;#34;Search&amp;#34;&lt;/span> &lt;span style="color:#a6e22e">class&lt;/span>&lt;span style="color:#f92672">=&lt;/span>&lt;span style="color:#e6db74">&amp;#34;text-base hover:text-primary-600 dark:hover:text-primary-400&amp;#34;&lt;/span>
+&lt;/span>&lt;/span>&lt;span style="display:flex;">&lt;span> &lt;span style="color:#a6e22e">title&lt;/span>&lt;span style="color:#f92672">=&lt;/span>&lt;span style="color:#e6db74">&amp;#34;{{ i18n &amp;#34;&lt;/span> &lt;span style="color:#a6e22e">search&lt;/span>&lt;span style="color:#960050;background-color:#1e0010">.&lt;/span>&lt;span style="color:#a6e22e">open_button_title&lt;/span>&lt;span style="color:#960050;background-color:#1e0010">&amp;#34;&lt;/span> &lt;span style="color:#960050;background-color:#1e0010">}}&amp;#34;&lt;/span>&amp;gt;
+&lt;/span>&lt;/span>&lt;span style="display:flex;">&lt;span> {{ partial &amp;#34;icon.html&amp;#34; &amp;#34;search&amp;#34; }}
+&lt;/span>&lt;/span>&lt;span style="display:flex;">&lt;span> &amp;lt;/&lt;span style="color:#f92672">button&lt;/span>&amp;gt;
+&lt;/span>&lt;/span>&lt;span style="display:flex;">&lt;span> {{ end }}
+&lt;/span>&lt;/span>&lt;span style="display:flex;">&lt;span>
+&lt;/span>&lt;/span>&lt;span style="display:flex;">&lt;span> {{/* Appearance switch */}}
+&lt;/span>&lt;/span>&lt;span style="display:flex;">&lt;span> {{ if .Site.Params.footer.showAppearanceSwitcher | default false }}
+&lt;/span>&lt;/span>&lt;span style="display:flex;">&lt;span> &amp;lt;&lt;span style="color:#f92672">button&lt;/span> &lt;span style="color:#a6e22e">id&lt;/span>&lt;span style="color:#f92672">=&lt;/span>&lt;span style="color:#e6db74">&amp;#34;appearance-switcher-mobile&amp;#34;&lt;/span> &lt;span style="color:#a6e22e">aria-label&lt;/span>&lt;span style="color:#f92672">=&lt;/span>&lt;span style="color:#e6db74">&amp;#34;Dark mode switcher&amp;#34;&lt;/span> &lt;span style="color:#a6e22e">type&lt;/span>&lt;span style="color:#f92672">=&lt;/span>&lt;span style="color:#e6db74">&amp;#34;button&amp;#34;&lt;/span> &lt;span style="color:#a6e22e">class&lt;/span>&lt;span style="color:#f92672">=&lt;/span>&lt;span style="color:#e6db74">&amp;#34;text-base hover:text-primary-600 dark:hover:text-primary-400&amp;#34;&lt;/span> &lt;span style="color:#a6e22e">style&lt;/span>&lt;span style="color:#f92672">=&lt;/span>&lt;span style="color:#e6db74">&amp;#34;margin-right:5px&amp;#34;&lt;/span>&amp;gt;
+&lt;/span>&lt;/span>&lt;span style="display:flex;">&lt;span> &amp;lt;&lt;span style="color:#f92672">div&lt;/span> &lt;span style="color:#a6e22e">class&lt;/span>&lt;span style="color:#f92672">=&lt;/span>&lt;span style="color:#e6db74">&amp;#34;flex items-center justify-center dark:hidden&amp;#34;&lt;/span>&amp;gt;
+&lt;/span>&lt;/span>&lt;span style="display:flex;">&lt;span> {{ partial &amp;#34;icon.html&amp;#34; &amp;#34;moon&amp;#34; }}
+&lt;/span>&lt;/span>&lt;span style="display:flex;">&lt;span> &amp;lt;/&lt;span style="color:#f92672">div&lt;/span>&amp;gt;
+&lt;/span>&lt;/span>&lt;span style="display:flex;">&lt;span> &amp;lt;&lt;span style="color:#f92672">div&lt;/span> &lt;span style="color:#a6e22e">class&lt;/span>&lt;span style="color:#f92672">=&lt;/span>&lt;span style="color:#e6db74">&amp;#34;items-center justify-center hidden dark:flex&amp;#34;&lt;/span>&amp;gt;
+&lt;/span>&lt;/span>&lt;span style="display:flex;">&lt;span> {{ partial &amp;#34;icon.html&amp;#34; &amp;#34;sun&amp;#34; }}
+&lt;/span>&lt;/span>&lt;span style="display:flex;">&lt;span> &amp;lt;/&lt;span style="color:#f92672">div&lt;/span>&amp;gt;
+&lt;/span>&lt;/span>&lt;span style="display:flex;">&lt;span> &amp;lt;/&lt;span style="color:#f92672">button&lt;/span>&amp;gt;
+&lt;/span>&lt;/span>&lt;span style="display:flex;">&lt;span> {{ end }}
+&lt;/span>&lt;/span>&lt;span style="display:flex;">&lt;span>
+&lt;/span>&lt;/span>&lt;span style="display:flex;">&lt;span> &amp;lt;/&lt;span style="color:#f92672">div&lt;/span>&amp;gt;
+&lt;/span>&lt;/span>&lt;span style="display:flex;">&lt;span> &amp;lt;/&lt;span style="color:#f92672">div&lt;/span>&amp;gt;
+&lt;/span>&lt;/span>&lt;span style="display:flex;">&lt;span> &amp;lt;&lt;span style="color:#f92672">div&lt;/span> &lt;span style="color:#a6e22e">class&lt;/span>&lt;span style="color:#f92672">=&lt;/span>&lt;span style="color:#e6db74">&amp;#34;-my-2 -mr-2 md:hidden&amp;#34;&lt;/span>&amp;gt;
+&lt;/span>&lt;/span>&lt;span style="display:flex;">&lt;span>
+&lt;/span>&lt;/span>&lt;span style="display:flex;">&lt;span> &amp;lt;&lt;span style="color:#f92672">label&lt;/span> &lt;span style="color:#a6e22e">id&lt;/span>&lt;span style="color:#f92672">=&lt;/span>&lt;span style="color:#e6db74">&amp;#34;menu-button&amp;#34;&lt;/span> &lt;span style="color:#a6e22e">class&lt;/span>&lt;span style="color:#f92672">=&lt;/span>&lt;span style="color:#e6db74">&amp;#34;block&amp;#34;&lt;/span>&amp;gt;
+&lt;/span>&lt;/span>&lt;span style="display:flex;">&lt;span> {{ if .Site.Menus.main }}
+&lt;/span>&lt;/span>&lt;span style="display:flex;">&lt;span> &amp;lt;&lt;span style="color:#f92672">div&lt;/span> &lt;span style="color:#a6e22e">class&lt;/span>&lt;span style="color:#f92672">=&lt;/span>&lt;span style="color:#e6db74">&amp;#34;cursor-pointer hover:text-primary-600 dark:hover:text-primary-400&amp;#34;&lt;/span>&amp;gt;
+&lt;/span>&lt;/span>&lt;span style="display:flex;">&lt;span> {{ partial &amp;#34;icon.html&amp;#34; &amp;#34;bars&amp;#34; }}
+&lt;/span>&lt;/span>&lt;span style="display:flex;">&lt;span> &amp;lt;/&lt;span style="color:#f92672">div&lt;/span>&amp;gt;
+&lt;/span>&lt;/span>&lt;span style="display:flex;">&lt;span> &amp;lt;&lt;span style="color:#f92672">div&lt;/span> &lt;span style="color:#a6e22e">id&lt;/span>&lt;span style="color:#f92672">=&lt;/span>&lt;span style="color:#e6db74">&amp;#34;menu-wrapper&amp;#34;&lt;/span> &lt;span style="color:#a6e22e">style&lt;/span>&lt;span style="color:#f92672">=&lt;/span>&lt;span style="color:#e6db74">&amp;#34;padding-top:5px;&amp;#34;&lt;/span>
+&lt;/span>&lt;/span>&lt;span style="display:flex;">&lt;span> &lt;span style="color:#a6e22e">class&lt;/span>&lt;span style="color:#f92672">=&lt;/span>&lt;span style="color:#e6db74">&amp;#34;fixed inset-0 z-30 invisible w-screen h-screen m-0 overflow-auto transition-opacity opacity-0 cursor-default bg-neutral-100/50 backdrop-blur-sm dark:bg-neutral-900/50&amp;#34;&lt;/span>&amp;gt;
+&lt;/span>&lt;/span>&lt;span style="display:flex;">&lt;span> &amp;lt;&lt;span style="color:#f92672">ul&lt;/span>
+&lt;/span>&lt;/span>&lt;span style="display:flex;">&lt;span> &lt;span style="color:#a6e22e">class&lt;/span>&lt;span style="color:#f92672">=&lt;/span>&lt;span style="color:#e6db74">&amp;#34;flex space-y-2 mt-3 flex-col items-end w-full px-6 py-6 mx-auto overflow-visible list-none ltr:text-right rtl:text-left max-w-7xl&amp;#34;&lt;/span>&amp;gt;
+&lt;/span>&lt;/span>&lt;span style="display:flex;">&lt;span>
+&lt;/span>&lt;/span>&lt;span style="display:flex;">&lt;span> &amp;lt;&lt;span style="color:#f92672">li&lt;/span> &lt;span style="color:#a6e22e">id&lt;/span>&lt;span style="color:#f92672">=&lt;/span>&lt;span style="color:#e6db74">&amp;#34;menu-close-button&amp;#34;&lt;/span>&amp;gt;
+&lt;/span>&lt;/span>&lt;span style="display:flex;">&lt;span> &amp;lt;&lt;span style="color:#f92672">span&lt;/span>
+&lt;/span>&lt;/span>&lt;span style="display:flex;">&lt;span> &lt;span style="color:#a6e22e">class&lt;/span>&lt;span style="color:#f92672">=&lt;/span>&lt;span style="color:#e6db74">&amp;#34;cursor-pointer inline-block align-text-bottom hover:text-primary-600 dark:hover:text-primary-400&amp;#34;&lt;/span>&amp;gt;
+&lt;/span>&lt;/span>&lt;span style="display:flex;">&lt;span> {{ partial &amp;#34;icon.html&amp;#34; &amp;#34;xmark&amp;#34; }}
+&lt;/span>&lt;/span>&lt;span style="display:flex;">&lt;span> &amp;lt;/&lt;span style="color:#f92672">span&lt;/span>&amp;gt;
+&lt;/span>&lt;/span>&lt;span style="display:flex;">&lt;span> &amp;lt;/&lt;span style="color:#f92672">li&lt;/span>&amp;gt;
+&lt;/span>&lt;/span>&lt;span style="display:flex;">&lt;span>
+&lt;/span>&lt;/span>&lt;span style="display:flex;">&lt;span> {{ range .Site.Menus.main }}
+&lt;/span>&lt;/span>&lt;span style="display:flex;">&lt;span> {{ partial &amp;#34;header/header-mobile-option.html&amp;#34; . }}
+&lt;/span>&lt;/span>&lt;span style="display:flex;">&lt;span> {{ end }}
+&lt;/span>&lt;/span>&lt;span style="display:flex;">&lt;span>
+&lt;/span>&lt;/span>&lt;span style="display:flex;">&lt;span> &amp;lt;/&lt;span style="color:#f92672">ul&lt;/span>&amp;gt;
+&lt;/span>&lt;/span>&lt;span style="display:flex;">&lt;span> {{ if .Site.Menus.subnavigation }}
+&lt;/span>&lt;/span>&lt;span style="display:flex;">&lt;span> &amp;lt;&lt;span style="color:#f92672">hr&lt;/span>&amp;gt;
+&lt;/span>&lt;/span>&lt;span style="display:flex;">&lt;span> &amp;lt;&lt;span style="color:#f92672">ul&lt;/span>
+&lt;/span>&lt;/span>&lt;span style="display:flex;">&lt;span> &lt;span style="color:#a6e22e">class&lt;/span>&lt;span style="color:#f92672">=&lt;/span>&lt;span style="color:#e6db74">&amp;#34;flex mt-4 flex-col items-end w-full px-6 py-6 mx-auto overflow-visible list-none ltr:text-right rtl:text-left max-w-7xl&amp;#34;&lt;/span>&amp;gt;
+&lt;/span>&lt;/span>&lt;span style="display:flex;">&lt;span> {{ range .Site.Menus.subnavigation }}
+&lt;/span>&lt;/span>&lt;span style="display:flex;">&lt;span> &amp;lt;&lt;span style="color:#f92672">li&lt;/span> &lt;span style="color:#a6e22e">class&lt;/span>&lt;span style="color:#f92672">=&lt;/span>&lt;span style="color:#e6db74">&amp;#34;mb-1&amp;#34;&lt;/span>&amp;gt;
+&lt;/span>&lt;/span>&lt;span style="display:flex;">&lt;span> &amp;lt;&lt;span style="color:#f92672">a&lt;/span> &lt;span style="color:#a6e22e">href&lt;/span>&lt;span style="color:#f92672">=&lt;/span>&lt;span style="color:#e6db74">&amp;#34;{{ .URL }}&amp;#34;&lt;/span> &lt;span style="color:#960050;background-color:#1e0010">{{&lt;/span> &lt;span style="color:#a6e22e">if&lt;/span> &lt;span style="color:#a6e22e">or&lt;/span> &lt;span style="color:#960050;background-color:#1e0010">(&lt;/span>&lt;span style="color:#a6e22e">strings&lt;/span>&lt;span style="color:#960050;background-color:#1e0010">.&lt;/span>&lt;span style="color:#a6e22e">HasPrefix&lt;/span> &lt;span style="color:#960050;background-color:#1e0010">.&lt;/span>&lt;span style="color:#a6e22e">URL&lt;/span> &lt;span style="color:#960050;background-color:#1e0010">&amp;#34;&lt;/span>&lt;span style="color:#a6e22e">http:&lt;/span>&lt;span style="color:#960050;background-color:#1e0010">&amp;#34;&lt;/span> &lt;span style="color:#960050;background-color:#1e0010">)&lt;/span> &lt;span style="color:#960050;background-color:#1e0010">(&lt;/span>&lt;span style="color:#a6e22e">strings&lt;/span>&lt;span style="color:#960050;background-color:#1e0010">.&lt;/span>&lt;span style="color:#a6e22e">HasPrefix&lt;/span> &lt;span style="color:#960050;background-color:#1e0010">.&lt;/span>&lt;span style="color:#a6e22e">URL&lt;/span> &lt;span style="color:#960050;background-color:#1e0010">&amp;#34;&lt;/span>&lt;span style="color:#a6e22e">https:&lt;/span>&lt;span style="color:#960050;background-color:#1e0010">&amp;#34;&lt;/span> &lt;span style="color:#960050;background-color:#1e0010">)&lt;/span> &lt;span style="color:#960050;background-color:#1e0010">}}&lt;/span> &lt;span style="color:#a6e22e">target&lt;/span>&lt;span style="color:#f92672">=&lt;/span>&lt;span style="color:#e6db74">&amp;#34;_blank&amp;#34;&lt;/span> &lt;span style="color:#960050;background-color:#1e0010">{{&lt;/span> &lt;span style="color:#a6e22e">end&lt;/span> &lt;span style="color:#960050;background-color:#1e0010">}}&lt;/span> &lt;span style="color:#a6e22e">class&lt;/span>&lt;span style="color:#f92672">=&lt;/span>&lt;span style="color:#e6db74">&amp;#34;flex items-center&amp;#34;&lt;/span>&amp;gt;
+&lt;/span>&lt;/span>&lt;span style="display:flex;">&lt;span> {{ if .Pre }}
+&lt;/span>&lt;/span>&lt;span style="display:flex;">&lt;span> &amp;lt;&lt;span style="color:#f92672">span&lt;/span> &lt;span style="color:#960050;background-color:#1e0010">{{&lt;/span> &lt;span style="color:#a6e22e">if&lt;/span> &lt;span style="color:#a6e22e">and&lt;/span> &lt;span style="color:#960050;background-color:#1e0010">.&lt;/span>&lt;span style="color:#a6e22e">Pre&lt;/span> &lt;span style="color:#960050;background-color:#1e0010">.&lt;/span>&lt;span style="color:#a6e22e">Name&lt;/span>&lt;span style="color:#960050;background-color:#1e0010">}}&lt;/span> &lt;span style="color:#a6e22e">class&lt;/span>&lt;span style="color:#f92672">=&lt;/span>&lt;span style="color:#e6db74">&amp;#34;mr-3&amp;#34;&lt;/span> &lt;span style="color:#960050;background-color:#1e0010">{{&lt;/span> &lt;span style="color:#a6e22e">end&lt;/span> &lt;span style="color:#960050;background-color:#1e0010">}}&lt;/span>&amp;gt;
+&lt;/span>&lt;/span>&lt;span style="display:flex;">&lt;span> {{ partial &amp;#34;icon.html&amp;#34; .Pre }}
+&lt;/span>&lt;/span>&lt;span style="display:flex;">&lt;span> &amp;lt;/&lt;span style="color:#f92672">span&lt;/span>&amp;gt;
+&lt;/span>&lt;/span>&lt;span style="display:flex;">&lt;span> {{ end }}
+&lt;/span>&lt;/span>&lt;span style="display:flex;">&lt;span> &amp;lt;&lt;span style="color:#f92672">p&lt;/span> &lt;span style="color:#a6e22e">class&lt;/span>&lt;span style="color:#f92672">=&lt;/span>&lt;span style="color:#e6db74">&amp;#34;text-sm font-sm text-gray-500 hover:text-gray-900&amp;#34;&lt;/span> &lt;span style="color:#a6e22e">title&lt;/span>&lt;span style="color:#f92672">=&lt;/span>&lt;span style="color:#e6db74">&amp;#34;{{ .Title }}&amp;#34;&lt;/span>&amp;gt;
+&lt;/span>&lt;/span>&lt;span style="display:flex;">&lt;span> {{ .Name | markdownify }}
+&lt;/span>&lt;/span>&lt;span style="display:flex;">&lt;span> &amp;lt;/&lt;span style="color:#f92672">p&lt;/span>&amp;gt;
+&lt;/span>&lt;/span>&lt;span style="display:flex;">&lt;span> &amp;lt;/&lt;span style="color:#f92672">a&lt;/span>&amp;gt;
+&lt;/span>&lt;/span>&lt;span style="display:flex;">&lt;span> &amp;lt;/&lt;span style="color:#f92672">li&lt;/span>&amp;gt;
+&lt;/span>&lt;/span>&lt;span style="display:flex;">&lt;span> {{ end }}
+&lt;/span>&lt;/span>&lt;span style="display:flex;">&lt;span> &amp;lt;/&lt;span style="color:#f92672">ul&lt;/span>&amp;gt;
+&lt;/span>&lt;/span>&lt;span style="display:flex;">&lt;span> {{ end }}
+&lt;/span>&lt;/span>&lt;span style="display:flex;">&lt;span> &amp;lt;/&lt;span style="color:#f92672">div&lt;/span>&amp;gt;
+&lt;/span>&lt;/span>&lt;span style="display:flex;">&lt;span> {{ end }}
+&lt;/span>&lt;/span>&lt;span style="display:flex;">&lt;span> &amp;lt;/&lt;span style="color:#f92672">label&lt;/span>&amp;gt;
+&lt;/span>&lt;/span>&lt;span style="display:flex;">&lt;span> &amp;lt;/&lt;span style="color:#f92672">div&lt;/span>&amp;gt;
+&lt;/span>&lt;/span>&lt;span style="display:flex;">&lt;span>&amp;lt;/&lt;span style="color:#f92672">div&lt;/span>&amp;gt;
+&lt;/span>&lt;/span>&lt;span style="display:flex;">&lt;span>
+&lt;/span>&lt;/span>&lt;span style="display:flex;">&lt;span>{{ if .Site.Menus.subnavigation }}
+&lt;/span>&lt;/span>&lt;span style="display:flex;">&lt;span>&amp;lt;&lt;span style="color:#f92672">div&lt;/span> &lt;span style="color:#a6e22e">class&lt;/span>&lt;span style="color:#f92672">=&lt;/span>&lt;span style="color:#e6db74">&amp;#34;main-menu flex pb-2 flex-col items-end justify-between md:justify-start space-x-3&amp;#34;&lt;/span> 
+&lt;/span>&lt;/span>&lt;span style="display:flex;">&lt;span> &lt;span style="color:#a6e22e">style&lt;/span>&lt;span style="color:#f92672">=&lt;/span>&lt;span style="color:#e6db74">&amp;#34;
+&lt;/span>&lt;/span>&lt;/span>&lt;span style="display:flex;">&lt;span>&lt;span style="color:#e6db74"> position: fixed;
+&lt;/span>&lt;/span>&lt;/span>&lt;span style="display:flex;">&lt;span>&lt;span style="color:#e6db74"> top: 65px;
+&lt;/span>&lt;/span>&lt;/span>&lt;span style="display:flex;">&lt;span>&lt;span style="color:#e6db74"> left: 50%;
+&lt;/span>&lt;/span>&lt;/span>&lt;span style="display:flex;">&lt;span>&lt;span style="color:#e6db74"> transform: translateX(-50%);
+&lt;/span>&lt;/span>&lt;/span>&lt;span style="display:flex;">&lt;span>&lt;span style="color:#e6db74"> width: 90%; /* 移动端宽度更大 */
+&lt;/span>&lt;/span>&lt;/span>&lt;span style="display:flex;">&lt;span>&lt;span style="color:#e6db74"> max-width: 900px;
+&lt;/span>&lt;/span>&lt;/span>&lt;span style="display:flex;">&lt;span>&lt;span style="color:#e6db74"> background: linear-gradient(
+&lt;/span>&lt;/span>&lt;/span>&lt;span style="display:flex;">&lt;span>&lt;span style="color:#e6db74"> 135deg, 
+&lt;/span>&lt;/span>&lt;/span>&lt;span style="display:flex;">&lt;span>&lt;span style="color:#e6db74"> rgba(255, 255, 255, 0.4),
+&lt;/span>&lt;/span>&lt;/span>&lt;span style="display:flex;">&lt;span>&lt;span style="color:#e6db74"> rgba(147, 197, 253, 0.3) 20%,
+&lt;/span>&lt;/span>&lt;/span>&lt;span style="display:flex;">&lt;span>&lt;span style="color:#e6db74"> rgba(167, 243, 208, 0.35) 50%,
+&lt;/span>&lt;/span>&lt;/span>&lt;span style="display:flex;">&lt;span>&lt;span style="color:#e6db74"> rgba(147, 197, 253, 0.3) 80%,
+&lt;/span>&lt;/span>&lt;/span>&lt;span style="display:flex;">&lt;span>&lt;span style="color:#e6db74"> rgba(110, 231, 183, 0.35)
+&lt;/span>&lt;/span>&lt;/span>&lt;span style="display:flex;">&lt;span>&lt;span style="color:#e6db74"> );
+&lt;/span>&lt;/span>&lt;/span>&lt;span style="display:flex;">&lt;span>&lt;span style="color:#e6db74"> backdrop-filter: blur(8px);
+&lt;/span>&lt;/span>&lt;/span>&lt;span style="display:flex;">&lt;span>&lt;span style="color:#e6db74"> border: 1px solid rgba(255, 255, 255, 0.45);
+&lt;/span>&lt;/span>&lt;/span>&lt;span style="display:flex;">&lt;span>&lt;span style="color:#e6db74"> border-radius: 0.75rem; /* 移动端圆角稍小 */
+&lt;/span>&lt;/span>&lt;/span>&lt;span style="display:flex;">&lt;span>&lt;span style="color:#e6db74"> box-shadow: 
+&lt;/span>&lt;/span>&lt;/span>&lt;span style="display:flex;">&lt;span>&lt;span style="color:#e6db74"> 0 4px 6px rgba(0, 0, 0, 0.03),
+&lt;/span>&lt;/span>&lt;/span>&lt;span style="display:flex;">&lt;span>&lt;span style="color:#e6db74"> 0 1px 3px rgba(147, 197, 253, 0.2) inset,
+&lt;/span>&lt;/span>&lt;/span>&lt;span style="display:flex;">&lt;span>&lt;span style="color:#e6db74"> 0 2px 6px rgba(167, 243, 208, 0.15) inset;
+&lt;/span>&lt;/span>&lt;/span>&lt;span style="display:flex;">&lt;span>&lt;span style="color:#e6db74"> z-index: 999;
+&lt;/span>&lt;/span>&lt;/span>&lt;span style="display:flex;">&lt;span>&lt;span style="color:#e6db74"> padding: 0.25rem; /* 移动端内边距更小 */
+&lt;/span>&lt;/span>&lt;/span>&lt;span style="display:flex;">&lt;span>&lt;span style="color:#e6db74"> transition: all 0.3s ease;
+&lt;/span>&lt;/span>&lt;/span>&lt;span style="display:flex;">&lt;span>&lt;span style="color:#e6db74"> @media (min-width: 768px) { /* 桌面端样式 */
+&lt;/span>&lt;/span>&lt;/span>&lt;span style="display:flex;">&lt;span>&lt;span style="color:#e6db74"> width: 70%;
+&lt;/span>&lt;/span>&lt;/span>&lt;span style="display:flex;">&lt;span>&lt;span style="color:#e6db74"> padding: 0.25rem 0.5rem;
+&lt;/span>&lt;/span>&lt;/span>&lt;span style="display:flex;">&lt;span>&lt;span style="color:#e6db74"> border-radius: 1rem;
+&lt;/span>&lt;/span>&lt;/span>&lt;span style="display:flex;">&lt;span>&lt;span style="color:#e6db74"> }
+&lt;/span>&lt;/span>&lt;/span>&lt;span style="display:flex;">&lt;span>&lt;span style="color:#e6db74"> &amp;#34;&lt;/span>&amp;gt;
+&lt;/span>&lt;/span>&lt;span style="display:flex;">&lt;span> &amp;lt;&lt;span style="color:#f92672">div&lt;/span> &lt;span style="color:#a6e22e">class&lt;/span>&lt;span style="color:#f92672">=&lt;/span>&lt;span style="color:#e6db74">&amp;#34;hidden md:flex items-center space-x-5&amp;#34;&lt;/span>&amp;gt;
+&lt;/span>&lt;/span>&lt;span style="display:flex;">&lt;span> {{ range .Site.Menus.subnavigation }}
+&lt;/span>&lt;/span>&lt;span style="display:flex;">&lt;span> &amp;lt;&lt;span style="color:#f92672">a&lt;/span> &lt;span style="color:#a6e22e">href&lt;/span>&lt;span style="color:#f92672">=&lt;/span>&lt;span style="color:#e6db74">&amp;#34;{{ .URL }}&amp;#34;&lt;/span> &lt;span style="color:#960050;background-color:#1e0010">{{&lt;/span> &lt;span style="color:#a6e22e">if&lt;/span> &lt;span style="color:#a6e22e">or&lt;/span> &lt;span style="color:#960050;background-color:#1e0010">(&lt;/span>&lt;span style="color:#a6e22e">strings&lt;/span>&lt;span style="color:#960050;background-color:#1e0010">.&lt;/span>&lt;span style="color:#a6e22e">HasPrefix&lt;/span> &lt;span style="color:#960050;background-color:#1e0010">.&lt;/span>&lt;span style="color:#a6e22e">URL&lt;/span> &lt;span style="color:#960050;background-color:#1e0010">&amp;#34;&lt;/span>&lt;span style="color:#a6e22e">http:&lt;/span>&lt;span style="color:#960050;background-color:#1e0010">&amp;#34;&lt;/span> &lt;span style="color:#960050;background-color:#1e0010">)&lt;/span> &lt;span style="color:#960050;background-color:#1e0010">(&lt;/span>&lt;span style="color:#a6e22e">strings&lt;/span>&lt;span style="color:#960050;background-color:#1e0010">.&lt;/span>&lt;span style="color:#a6e22e">HasPrefix&lt;/span> &lt;span style="color:#960050;background-color:#1e0010">.&lt;/span>&lt;span style="color:#a6e22e">URL&lt;/span> &lt;span style="color:#960050;background-color:#1e0010">&amp;#34;&lt;/span>&lt;span style="color:#a6e22e">https:&lt;/span>&lt;span style="color:#960050;background-color:#1e0010">&amp;#34;&lt;/span> &lt;span style="color:#960050;background-color:#1e0010">)&lt;/span> &lt;span style="color:#960050;background-color:#1e0010">}}&lt;/span>
+&lt;/span>&lt;/span>&lt;span style="display:flex;">&lt;span> &lt;span style="color:#a6e22e">target&lt;/span>&lt;span style="color:#f92672">=&lt;/span>&lt;span style="color:#e6db74">&amp;#34;_blank&amp;#34;&lt;/span> &lt;span style="color:#960050;background-color:#1e0010">{{&lt;/span> &lt;span style="color:#a6e22e">end&lt;/span> &lt;span style="color:#960050;background-color:#1e0010">}}&lt;/span> &lt;span style="color:#a6e22e">class&lt;/span>&lt;span style="color:#f92672">=&lt;/span>&lt;span style="color:#e6db74">&amp;#34;flex items-center&amp;#34;&lt;/span>&amp;gt;
+&lt;/span>&lt;/span>&lt;span style="display:flex;">&lt;span> {{ if .Pre }}
+&lt;/span>&lt;/span>&lt;span style="display:flex;">&lt;span> &amp;lt;&lt;span style="color:#f92672">span&lt;/span> &lt;span style="color:#960050;background-color:#1e0010">{{&lt;/span> &lt;span style="color:#a6e22e">if&lt;/span> &lt;span style="color:#a6e22e">and&lt;/span> &lt;span style="color:#960050;background-color:#1e0010">.&lt;/span>&lt;span style="color:#a6e22e">Pre&lt;/span> &lt;span style="color:#960050;background-color:#1e0010">.&lt;/span>&lt;span style="color:#a6e22e">Name&lt;/span>&lt;span style="color:#960050;background-color:#1e0010">}}&lt;/span> &lt;span style="color:#a6e22e">class&lt;/span>&lt;span style="color:#f92672">=&lt;/span>&lt;span style="color:#e6db74">&amp;#34;mr-1&amp;#34;&lt;/span> &lt;span style="color:#960050;background-color:#1e0010">{{&lt;/span> &lt;span style="color:#a6e22e">end&lt;/span> &lt;span style="color:#960050;background-color:#1e0010">}}&lt;/span>&amp;gt;
+&lt;/span>&lt;/span>&lt;span style="display:flex;">&lt;span> {{ partial &amp;#34;icon.html&amp;#34; .Pre }}
+&lt;/span>&lt;/span>&lt;span style="display:flex;">&lt;span> &amp;lt;/&lt;span style="color:#f92672">span&lt;/span>&amp;gt;
+&lt;/span>&lt;/span>&lt;span style="display:flex;">&lt;span> {{ end }}
+&lt;/span>&lt;/span>&lt;span style="display:flex;">&lt;span> &amp;lt;&lt;span style="color:#f92672">p&lt;/span> &lt;span style="color:#a6e22e">class&lt;/span>&lt;span style="color:#f92672">=&lt;/span>&lt;span style="color:#e6db74">&amp;#34;text-xs font-light text-gray-500 hover:text-gray-900&amp;#34;&lt;/span> &lt;span style="color:#a6e22e">title&lt;/span>&lt;span style="color:#f92672">=&lt;/span>&lt;span style="color:#e6db74">&amp;#34;{{ .Title }}&amp;#34;&lt;/span>&amp;gt;
+&lt;/span>&lt;/span>&lt;span style="display:flex;">&lt;span> {{ .Name | markdownify }}
+&lt;/span>&lt;/span>&lt;span style="display:flex;">&lt;span> &amp;lt;/&lt;span style="color:#f92672">p&lt;/span>&amp;gt;
+&lt;/span>&lt;/span>&lt;span style="display:flex;">&lt;span> &amp;lt;/&lt;span style="color:#f92672">a&lt;/span>&amp;gt;
+&lt;/span>&lt;/span>&lt;span style="display:flex;">&lt;span> {{ end }}
+&lt;/span>&lt;/span>&lt;span style="display:flex;">&lt;span> &amp;lt;/&lt;span style="color:#f92672">div&lt;/span>&amp;gt;
+&lt;/span>&lt;/span>&lt;span style="display:flex;">&lt;span>&amp;lt;/&lt;span style="color:#f92672">div&lt;/span>&amp;gt;
+&lt;/span>&lt;/span>&lt;span style="display:flex;">&lt;span>{{ end }}
+&lt;/span>&lt;/span>&lt;span style="display:flex;">&lt;span>
+&lt;/span>&lt;/span>&lt;span style="display:flex;">&lt;span>{{ if .Site.Params.highlightCurrentMenuArea }}
+&lt;/span>&lt;/span>&lt;span style="display:flex;">&lt;span>&amp;lt;&lt;span style="color:#f92672">script&lt;/span>&amp;gt;
+&lt;/span>&lt;/span>&lt;span style="display:flex;">&lt;span> (&lt;span style="color:#66d9ef">function&lt;/span> () {
+&lt;/span>&lt;/span>&lt;span style="display:flex;">&lt;span> &lt;span style="color:#66d9ef">var&lt;/span> &lt;span style="color:#a6e22e">$mainmenu&lt;/span> &lt;span style="color:#f92672">=&lt;/span> &lt;span style="color:#a6e22e">$&lt;/span>(&lt;span style="color:#e6db74">&amp;#39;.main-menu&amp;#39;&lt;/span>);
+&lt;/span>&lt;/span>&lt;span style="display:flex;">&lt;span> &lt;span style="color:#66d9ef">var&lt;/span> &lt;span style="color:#a6e22e">path&lt;/span> &lt;span style="color:#f92672">=&lt;/span> window.&lt;span style="color:#a6e22e">location&lt;/span>.&lt;span style="color:#a6e22e">pathname&lt;/span>;
+&lt;/span>&lt;/span>&lt;span style="display:flex;">&lt;span> &lt;span style="color:#a6e22e">$mainmenu&lt;/span>.&lt;span style="color:#a6e22e">find&lt;/span>(&lt;span style="color:#e6db74">&amp;#39;a[href=&amp;#34;&amp;#39;&lt;/span> &lt;span style="color:#f92672">+&lt;/span> &lt;span style="color:#a6e22e">path&lt;/span> &lt;span style="color:#f92672">+&lt;/span> &lt;span style="color:#e6db74">&amp;#39;&amp;#34;]&amp;#39;&lt;/span>).&lt;span style="color:#a6e22e">each&lt;/span>(&lt;span style="color:#66d9ef">function&lt;/span> (&lt;span style="color:#a6e22e">i&lt;/span>, &lt;span style="color:#a6e22e">e&lt;/span>) {
+&lt;/span>&lt;/span>&lt;span style="display:flex;">&lt;span> &lt;span style="color:#a6e22e">$&lt;/span>(&lt;span style="color:#a6e22e">e&lt;/span>).&lt;span style="color:#a6e22e">children&lt;/span>(&lt;span style="color:#e6db74">&amp;#39;p&amp;#39;&lt;/span>).&lt;span style="color:#a6e22e">addClass&lt;/span>(&lt;span style="color:#e6db74">&amp;#39;active&amp;#39;&lt;/span>);
+&lt;/span>&lt;/span>&lt;span style="display:flex;">&lt;span> });
+&lt;/span>&lt;/span>&lt;span style="display:flex;">&lt;span> })();
+&lt;/span>&lt;/span>&lt;span style="display:flex;">&lt;span>&amp;lt;/&lt;span style="color:#f92672">script&lt;/span>&amp;gt;
+&lt;/span>&lt;/span>&lt;span style="display:flex;">&lt;span>{{ end }}
+&lt;/span>&lt;/span>&lt;span style="display:flex;">&lt;span>
+&lt;/span>&lt;/span>&lt;span style="display:flex;">&lt;span>&lt;span style="color:#75715e">&amp;lt;!-- 更新主内容区域的上边距 --&amp;gt;&lt;/span>
+&lt;/span>&lt;/span>&lt;span style="display:flex;">&lt;span>&amp;lt;&lt;span style="color:#f92672">style&lt;/span>&amp;gt;
+&lt;/span>&lt;/span>&lt;span style="display:flex;">&lt;span> &lt;span style="color:#f92672">main&lt;/span> {
+&lt;/span>&lt;/span>&lt;span style="display:flex;">&lt;span> &lt;span style="color:#66d9ef">margin-top&lt;/span>: &lt;span style="color:#ae81ff">60&lt;/span>&lt;span style="color:#66d9ef">px&lt;/span> &lt;span style="color:#75715e">!important&lt;/span>; &lt;span style="color:#75715e">/* 移动端上边距更小 */&lt;/span>
+&lt;/span>&lt;/span>&lt;span style="display:flex;">&lt;span> }
+&lt;/span>&lt;/span>&lt;span style="display:flex;">&lt;span> .&lt;span style="color:#a6e22e">has-submenu&lt;/span> &lt;span style="color:#f92672">main&lt;/span> {
+&lt;/span>&lt;/span>&lt;span style="display:flex;">&lt;span> &lt;span style="color:#66d9ef">margin-top&lt;/span>: &lt;span style="color:#ae81ff">100&lt;/span>&lt;span style="color:#66d9ef">px&lt;/span> &lt;span style="color:#75715e">!important&lt;/span>; &lt;span style="color:#75715e">/* 移动端上边距更小 */&lt;/span>
+&lt;/span>&lt;/span>&lt;span style="display:flex;">&lt;span> }
+&lt;/span>&lt;/span>&lt;span style="display:flex;">&lt;span> @&lt;span style="color:#66d9ef">media&lt;/span> &lt;span style="color:#f92672">(&lt;/span>&lt;span style="color:#f92672">min-width&lt;/span>&lt;span style="color:#f92672">:&lt;/span> &lt;span style="color:#f92672">768px&lt;/span>&lt;span style="color:#f92672">)&lt;/span> {
+&lt;/span>&lt;/span>&lt;span style="display:flex;">&lt;span> &lt;span style="color:#f92672">main&lt;/span> {
+&lt;/span>&lt;/span>&lt;span style="display:flex;">&lt;span> &lt;span style="color:#66d9ef">margin-top&lt;/span>: &lt;span style="color:#ae81ff">80&lt;/span>&lt;span style="color:#66d9ef">px&lt;/span> &lt;span style="color:#75715e">!important&lt;/span>; &lt;span style="color:#75715e">/* 桌面端保持原有上边距 */&lt;/span>
+&lt;/span>&lt;/span>&lt;span style="display:flex;">&lt;span> }
+&lt;/span>&lt;/span>&lt;span style="display:flex;">&lt;span> .&lt;span style="color:#a6e22e">has-submenu&lt;/span> &lt;span style="color:#f92672">main&lt;/span> {
+&lt;/span>&lt;/span>&lt;span style="display:flex;">&lt;span> &lt;span style="color:#66d9ef">margin-top&lt;/span>: &lt;span style="color:#ae81ff">120&lt;/span>&lt;span style="color:#66d9ef">px&lt;/span> &lt;span style="color:#75715e">!important&lt;/span>; &lt;span style="color:#75715e">/* 桌面端保持原有上边距 */&lt;/span>
+&lt;/span>&lt;/span>&lt;span style="display:flex;">&lt;span> }
+&lt;/span>&lt;/span>&lt;span style="display:flex;">&lt;span> }
+&lt;/span>&lt;/span>&lt;span style="display:flex;">&lt;span>&amp;lt;/&lt;span style="color:#f92672">style&lt;/span>&amp;gt;
+&lt;/span>&lt;/span>&lt;span style="display:flex;">&lt;span>
+&lt;/span>&lt;/span>&lt;span style="display:flex;">&lt;span>&lt;span style="color:#75715e">&amp;lt;!-- 检测是否有子导航菜单并添加类名 --&amp;gt;&lt;/span>
+&lt;/span>&lt;/span>&lt;span style="display:flex;">&lt;span>&amp;lt;&lt;span style="color:#f92672">script&lt;/span>&amp;gt;
+&lt;/span>&lt;/span>&lt;span style="display:flex;">&lt;span> &lt;span style="color:#66d9ef">if&lt;/span> (document.&lt;span style="color:#a6e22e">querySelector&lt;/span>(&lt;span style="color:#e6db74">&amp;#39;.main-menu + .main-menu&amp;#39;&lt;/span>)) {
+&lt;/span>&lt;/span>&lt;span style="display:flex;">&lt;span> document.&lt;span style="color:#a6e22e">body&lt;/span>.&lt;span style="color:#a6e22e">classList&lt;/span>.&lt;span style="color:#a6e22e">add&lt;/span>(&lt;span style="color:#e6db74">&amp;#39;has-submenu&amp;#39;&lt;/span>);
+&lt;/span>&lt;/span>&lt;span style="display:flex;">&lt;span> }
+&lt;/span>&lt;/span>&lt;span style="display:flex;">&lt;span>&amp;lt;/&lt;span style="color:#f92672">script&lt;/span>&amp;gt;
+&lt;/span>&lt;/span>&lt;/code>&lt;/pre>&lt;/div>
+ &lt;/div>
+ &lt;/div>
+&lt;/div>
+
+
+&lt;p>该菜单栏样式也能适配移动端（也是问的ai），有一部分注释，一些位置可以根据自己的需要调整。&lt;/p></description></item><item><title>矩阵合并的优化</title><link>https://example.org/posts/matrix-merge/</link><pubDate>Wed, 13 Nov 2024 19:31:18 +0800</pubDate><guid>https://example.org/posts/matrix-merge/</guid><description>&lt;p>在处理数据时，有时需要多次按行合并矩阵。本文将探讨两种不同的矩阵合并方式，并分析哪种方法更高效。&lt;/p>
+&lt;p>问题是这样的：有1个矩阵，假设其shape为m*n。现在希望对于某一行l1，将其它的行依次添加到该行的后部，但由于列数限制为2n，需要生成m行，每行分别为[l1,l2],[l1,l3],……,[l1,lm]。将这种处理作用于所有的行，最终能够得到一个(m-1)*m行，2n列的矩阵。&lt;/p>
+&lt;h2 id="方法一">方法一&lt;/h2>
+&lt;p>创建一个列数为2n的空矩阵&lt;code>matrix_end&lt;/code>，在循环中，先依次对原矩阵每一行生成m-1行，2n列的矩阵，每行分别为[li,l1],[li,l2],……,[li,lm]，然后将该矩阵与&lt;code>matrix_end&lt;/code>合并。实现如下：&lt;/p>
+&lt;div class="highlight">&lt;pre tabindex="0" style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4;">&lt;code class="language-python" data-lang="python">&lt;span style="display:flex;">&lt;span>&lt;span style="color:#f92672">import&lt;/span> numpy &lt;span style="color:#66d9ef">as&lt;/span> np
+&lt;/span>&lt;/span>&lt;span style="display:flex;">&lt;span>&lt;span style="color:#f92672">import&lt;/span> time
+&lt;/span>&lt;/span>&lt;span style="display:flex;">&lt;span>
+&lt;/span>&lt;/span>&lt;span style="display:flex;">&lt;span>&lt;span style="color:#75715e"># 设置随机种子&lt;/span>
+&lt;/span>&lt;/span>&lt;span style="display:flex;">&lt;span>np&lt;span style="color:#f92672">.&lt;/span>random&lt;span style="color:#f92672">.&lt;/span>seed(&lt;span style="color:#ae81ff">0&lt;/span>)
+&lt;/span>&lt;/span>&lt;span style="display:flex;">&lt;span>
+&lt;/span>&lt;/span>&lt;span style="display:flex;">&lt;span>&lt;span style="color:#75715e"># 记录运行时间&lt;/span>
+&lt;/span>&lt;/span>&lt;span style="display:flex;">&lt;span>start &lt;span style="color:#f92672">=&lt;/span> time&lt;span style="color:#f92672">.&lt;/span>time()
+&lt;/span>&lt;/span>&lt;span style="display:flex;">&lt;span>
+&lt;/span>&lt;/span>&lt;span style="display:flex;">&lt;span>&lt;span style="color:#75715e"># 随机生成1000行5列的矩阵init_matrix&lt;/span>
+&lt;/span>&lt;/span>&lt;span style="display:flex;">&lt;span>init_matrix &lt;span style="color:#f92672">=&lt;/span> np&lt;span style="color:#f92672">.&lt;/span>random&lt;span style="color:#f92672">.&lt;/span>randint(&lt;span style="color:#ae81ff">0&lt;/span>, &lt;span style="color:#ae81ff">10&lt;/span>, size&lt;span style="color:#f92672">=&lt;/span>(&lt;span style="color:#ae81ff">1000&lt;/span>, &lt;span style="color:#ae81ff">5&lt;/span>))
+&lt;/span>&lt;/span>&lt;span style="display:flex;">&lt;span>
+&lt;/span>&lt;/span>&lt;span style="display:flex;">&lt;span>matrix_end &lt;span style="color:#f92672">=&lt;/span> np&lt;span style="color:#f92672">.&lt;/span>empty((&lt;span style="color:#ae81ff">0&lt;/span>, init_matrix&lt;span style="color:#f92672">.&lt;/span>shape[&lt;span style="color:#ae81ff">1&lt;/span>]&lt;span style="color:#f92672">*&lt;/span>&lt;span style="color:#ae81ff">2&lt;/span>))
+&lt;/span>&lt;/span>&lt;span style="display:flex;">&lt;span>
+&lt;/span>&lt;/span>&lt;span style="display:flex;">&lt;span>&lt;span style="color:#75715e"># 逐行合并&lt;/span>
+&lt;/span>&lt;/span>&lt;span style="display:flex;">&lt;span>&lt;span style="color:#66d9ef">for&lt;/span> idx &lt;span style="color:#f92672">in&lt;/span> range(init_matrix&lt;span style="color:#f92672">.&lt;/span>shape[&lt;span style="color:#ae81ff">0&lt;/span>]):
+&lt;/span>&lt;/span>&lt;span style="display:flex;">&lt;span> neighbor_rows &lt;span style="color:#f92672">=&lt;/span> np&lt;span style="color:#f92672">.&lt;/span>delete(init_matrix, idx, axis&lt;span style="color:#f92672">=&lt;/span>&lt;span style="color:#ae81ff">0&lt;/span>)
+&lt;/span>&lt;/span>&lt;span style="display:flex;">&lt;span> row &lt;span style="color:#f92672">=&lt;/span> np&lt;span style="color:#f92672">.&lt;/span>concatenate([init_matrix[idx] &lt;span style="color:#f92672">+&lt;/span> &lt;span style="color:#ae81ff">0&lt;/span> &lt;span style="color:#f92672">*&lt;/span> neighbor_rows, neighbor_rows], axis&lt;span style="color:#f92672">=&lt;/span>&lt;span style="color:#ae81ff">1&lt;/span>)
+&lt;/span>&lt;/span>&lt;span style="display:flex;">&lt;span> matrix_end &lt;span style="color:#f92672">=&lt;/span> np&lt;span style="color:#f92672">.&lt;/span>concatenate([matrix_end, row], axis&lt;span style="color:#f92672">=&lt;/span>&lt;span style="color:#ae81ff">0&lt;/span>)
+&lt;/span>&lt;/span>&lt;span style="display:flex;">&lt;span>
+&lt;/span>&lt;/span>&lt;span style="display:flex;">&lt;span>end &lt;span style="color:#f92672">=&lt;/span> time&lt;span style="color:#f92672">.&lt;/span>time()
+&lt;/span>&lt;/span>&lt;span style="display:flex;">&lt;span>print(&lt;span style="color:#e6db74">&amp;#34;Time:&amp;#34;&lt;/span>, end &lt;span style="color:#f92672">-&lt;/span> start)
+&lt;/span>&lt;/span>&lt;/code>&lt;/pre>&lt;/div>&lt;p>最终的运行时间为7.4s&lt;/p>
+&lt;h2 id="方法二">方法二&lt;/h2>
+&lt;p>创建一个空列表，在循环中，先得到m-1行，2n列的矩阵，将结果存储到列表中，之后在循环外一次性将所有行合并成一个矩阵。实现如下：&lt;/p>
+&lt;div class="highlight">&lt;pre tabindex="0" style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4;">&lt;code class="language-python" data-lang="python">&lt;span style="display:flex;">&lt;span>&lt;span style="color:#f92672">import&lt;/span> numpy &lt;span style="color:#66d9ef">as&lt;/span> np
+&lt;/span>&lt;/span>&lt;span style="display:flex;">&lt;span>&lt;span style="color:#f92672">import&lt;/span> time
+&lt;/span>&lt;/span>&lt;span style="display:flex;">&lt;span>
+&lt;/span>&lt;/span>&lt;span style="display:flex;">&lt;span>&lt;span style="color:#75715e"># 设置随机种子&lt;/span>
+&lt;/span>&lt;/span>&lt;span style="display:flex;">&lt;span>np&lt;span style="color:#f92672">.&lt;/span>random&lt;span style="color:#f92672">.&lt;/span>seed(&lt;span style="color:#ae81ff">0&lt;/span>)
+&lt;/span>&lt;/span>&lt;span style="display:flex;">&lt;span>
+&lt;/span>&lt;/span>&lt;span style="display:flex;">&lt;span>&lt;span style="color:#75715e"># 记录运行时间&lt;/span>
+&lt;/span>&lt;/span>&lt;span style="display:flex;">&lt;span>start &lt;span style="color:#f92672">=&lt;/span> time&lt;span style="color:#f92672">.&lt;/span>time()
+&lt;/span>&lt;/span>&lt;span style="display:flex;">&lt;span>
+&lt;/span>&lt;/span>&lt;span style="display:flex;">&lt;span>&lt;span style="color:#75715e"># 随机生成1000行5列的矩阵init_matrix&lt;/span>
+&lt;/span>&lt;/span>&lt;span style="display:flex;">&lt;span>init_matrix &lt;span style="color:#f92672">=&lt;/span> np&lt;span style="color:#f92672">.&lt;/span>random&lt;span style="color:#f92672">.&lt;/span>randint(&lt;span style="color:#ae81ff">0&lt;/span>, &lt;span style="color:#ae81ff">10&lt;/span>, size&lt;span style="color:#f92672">=&lt;/span>(&lt;span style="color:#ae81ff">1000&lt;/span>, &lt;span style="color:#ae81ff">5&lt;/span>))
+&lt;/span>&lt;/span>&lt;span style="display:flex;">&lt;span>
+&lt;/span>&lt;/span>&lt;span style="display:flex;">&lt;span>matrix_list &lt;span style="color:#f92672">=&lt;/span> []
+&lt;/span>&lt;/span>&lt;span style="display:flex;">&lt;span>
+&lt;/span>&lt;/span>&lt;span style="display:flex;">&lt;span>&lt;span style="color:#66d9ef">for&lt;/span> idx &lt;span style="color:#f92672">in&lt;/span> range(init_matrix&lt;span style="color:#f92672">.&lt;/span>shape[&lt;span style="color:#ae81ff">0&lt;/span>]):
+&lt;/span>&lt;/span>&lt;span style="display:flex;">&lt;span> neighbor_rows &lt;span style="color:#f92672">=&lt;/span> np&lt;span style="color:#f92672">.&lt;/span>delete(init_matrix, idx, axis&lt;span style="color:#f92672">=&lt;/span>&lt;span style="color:#ae81ff">0&lt;/span>)
+&lt;/span>&lt;/span>&lt;span style="display:flex;">&lt;span> row &lt;span style="color:#f92672">=&lt;/span> np&lt;span style="color:#f92672">.&lt;/span>concatenate([init_matrix[idx] &lt;span style="color:#f92672">+&lt;/span> &lt;span style="color:#ae81ff">0&lt;/span> &lt;span style="color:#f92672">*&lt;/span> neighbor_rows, neighbor_rows], axis&lt;span style="color:#f92672">=&lt;/span>&lt;span style="color:#ae81ff">1&lt;/span>)
+&lt;/span>&lt;/span>&lt;span style="display:flex;">&lt;span> matrix_list&lt;span style="color:#f92672">.&lt;/span>append(row)
+&lt;/span>&lt;/span>&lt;span style="display:flex;">&lt;span>
+&lt;/span>&lt;/span>&lt;span style="display:flex;">&lt;span>&lt;span style="color:#75715e"># 一次性合并所有行&lt;/span>
+&lt;/span>&lt;/span>&lt;span style="display:flex;">&lt;span>matrix &lt;span style="color:#f92672">=&lt;/span> np&lt;span style="color:#f92672">.&lt;/span>vstack(matrix_list)
+&lt;/span>&lt;/span>&lt;span style="display:flex;">&lt;span>
+&lt;/span>&lt;/span>&lt;span style="display:flex;">&lt;span>end &lt;span style="color:#f92672">=&lt;/span> time&lt;span style="color:#f92672">.&lt;/span>time()
+&lt;/span>&lt;/span>&lt;span style="display:flex;">&lt;span>print(&lt;span style="color:#e6db74">&amp;#34;Time:&amp;#34;&lt;/span>, end &lt;span style="color:#f92672">-&lt;/span> start)
+&lt;/span>&lt;/span>&lt;/code>&lt;/pre>&lt;/div>&lt;p>最终的运行时间为0.05s&lt;/p></description></item><item><title>一首小诗</title><link>https://example.org/posts/simple-poem/</link><pubDate>Thu, 07 Nov 2024 00:00:00 +0000</pubDate><guid>https://example.org/posts/simple-poem/</guid><description>&lt;h2 id="无题">无题&lt;/h2>
+&lt;p>露湿花重晓天白，晨起事无门户开。&lt;/p>
+&lt;p>东风携来远方信，吹乱衣襟不忍拆。&lt;/p></description></item><item><title>距离计算的优化方法</title><link>https://example.org/posts/distance-calculate/</link><pubDate>Wed, 30 Oct 2024 18:35:47 +0800</pubDate><guid>https://example.org/posts/distance-calculate/</guid><description>&lt;h2 id="前言">前言&lt;/h2>
+&lt;p>在处理包含地理坐标的数据时，常常涉及到计算两个或多个坐标之间的欧式距离。当处理大量的数据点时，计算两两之间的距离会变得非常耗时，因为随着数据点的增加，组合的数量呈二次方增长。在&lt;code>python&lt;/code>中，除了常规的&lt;code>for&lt;/code>循环，还有哪些方法能够更高效地计算距离呢&lt;/p>
+&lt;h2 id="坐标距离计算方法">坐标距离计算方法&lt;/h2>
+&lt;h3 id="1-numpy的向量化">1. NumPy的向量化&lt;/h3>
+&lt;p>&lt;code>NumPy&lt;/code>是一个高效的数值计算库，提供了向量化操作的能力，可以避免使用循环。通过将数据组织为数组，我们可以一次性计算多个距离。&lt;/p>
+&lt;p>&lt;strong>示例代码&lt;/strong>&lt;/p>
+&lt;div class="highlight">&lt;pre tabindex="0" style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4;">&lt;code class="language-python" data-lang="python">&lt;span style="display:flex;">&lt;span>&lt;span style="color:#f92672">import&lt;/span> numpy &lt;span style="color:#66d9ef">as&lt;/span> np
+&lt;/span>&lt;/span>&lt;span style="display:flex;">&lt;span>
+&lt;/span>&lt;/span>&lt;span style="display:flex;">&lt;span>&lt;span style="color:#66d9ef">def&lt;/span> &lt;span style="color:#a6e22e">calculate_distances&lt;/span>(coords1, coords2):
+&lt;/span>&lt;/span>&lt;span style="display:flex;">&lt;span> &lt;span style="color:#75715e"># 将坐标转换为NumPy数组&lt;/span>
+&lt;/span>&lt;/span>&lt;span style="display:flex;">&lt;span> coords1 &lt;span style="color:#f92672">=&lt;/span> np&lt;span style="color:#f92672">.&lt;/span>array(coords1)
+&lt;/span>&lt;/span>&lt;span style="display:flex;">&lt;span> coords2 &lt;span style="color:#f92672">=&lt;/span> np&lt;span style="color:#f92672">.&lt;/span>array(coords2)
+&lt;/span>&lt;/span>&lt;span style="display:flex;">&lt;span> 
+&lt;/span>&lt;/span>&lt;span style="display:flex;">&lt;span> &lt;span style="color:#75715e"># 计算两两之间的距离&lt;/span>
+&lt;/span>&lt;/span>&lt;span style="display:flex;">&lt;span> dists &lt;span style="color:#f92672">=&lt;/span> np&lt;span style="color:#f92672">.&lt;/span>sqrt(np&lt;span style="color:#f92672">.&lt;/span>sum((coords1[:, np&lt;span style="color:#f92672">.&lt;/span>newaxis] &lt;span style="color:#f92672">-&lt;/span> coords2) &lt;span style="color:#f92672">**&lt;/span> &lt;span style="color:#ae81ff">2&lt;/span>, axis&lt;span style="color:#f92672">=&lt;/span>&lt;span style="color:#ae81ff">2&lt;/span>))
+&lt;/span>&lt;/span>&lt;span style="display:flex;">&lt;span> &lt;span style="color:#66d9ef">return&lt;/span> dists
+&lt;/span>&lt;/span>&lt;span style="display:flex;">&lt;span>
+&lt;/span>&lt;/span>&lt;span style="display:flex;">&lt;span>&lt;span style="color:#75715e"># 测试数据&lt;/span>
+&lt;/span>&lt;/span>&lt;span style="display:flex;">&lt;span>coords1 &lt;span style="color:#f92672">=&lt;/span> [(&lt;span style="color:#ae81ff">0&lt;/span>, &lt;span style="color:#ae81ff">0&lt;/span>), (&lt;span style="color:#ae81ff">1&lt;/span>, &lt;span style="color:#ae81ff">1&lt;/span>), (&lt;span style="color:#ae81ff">2&lt;/span>, &lt;span style="color:#ae81ff">2&lt;/span>)]
+&lt;/span>&lt;/span>&lt;span style="display:flex;">&lt;span>coords2 &lt;span style="color:#f92672">=&lt;/span> [(&lt;span style="color:#ae81ff">1&lt;/span>, &lt;span style="color:#ae81ff">0&lt;/span>), (&lt;span style="color:#ae81ff">2&lt;/span>, &lt;span style="color:#ae81ff">1&lt;/span>)]
+&lt;/span>&lt;/span>&lt;span style="display:flex;">&lt;span>distances &lt;span style="color:#f92672">=&lt;/span> calculate_distances(coords1, coords2)
+&lt;/span>&lt;/span>&lt;span style="display:flex;">&lt;span>print(distances)
+&lt;/span>&lt;/span>&lt;/code>&lt;/pre>&lt;/div>&lt;p>&lt;strong>核心思想&lt;/strong>&lt;/p>
+&lt;p>NumPy的向量化使我们能够利用底层的C语言实现来加速计算，而无需显式地编写循环。通过扩展数组的维度，我们能够在单次操作中计算多个距离，显著提高了性能。&lt;/p>
+&lt;h3 id="2-kd树">2. KD树&lt;/h3>
+&lt;p>KD树是一种空间分割的数据结构，可以快速地找到最近邻。对于大规模的点集合，KD树能够大幅度减少计算的复杂度。&lt;/p>
+&lt;p>&lt;strong>示例代码&lt;/strong>&lt;/p>
+&lt;div class="highlight">&lt;pre tabindex="0" style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4;">&lt;code class="language-python" data-lang="python">&lt;span style="display:flex;">&lt;span>&lt;span style="color:#f92672">from&lt;/span> scipy.spatial &lt;span style="color:#f92672">import&lt;/span> KDTree
+&lt;/span>&lt;/span>&lt;span style="display:flex;">&lt;span>
+&lt;/span>&lt;/span>&lt;span style="display:flex;">&lt;span>&lt;span style="color:#66d9ef">def&lt;/span> &lt;span style="color:#a6e22e">find_nearest&lt;/span>(coords, target):
+&lt;/span>&lt;/span>&lt;span style="display:flex;">&lt;span> tree &lt;span style="color:#f92672">=&lt;/span> KDTree(coords)
+&lt;/span>&lt;/span>&lt;span style="display:flex;">&lt;span> distances, indices &lt;span style="color:#f92672">=&lt;/span> tree&lt;span style="color:#f92672">.&lt;/span>query(target)
+&lt;/span>&lt;/span>&lt;span style="display:flex;">&lt;span> &lt;span style="color:#66d9ef">return&lt;/span> distances, indices
+&lt;/span>&lt;/span>&lt;span style="display:flex;">&lt;span>
+&lt;/span>&lt;/span>&lt;span style="display:flex;">&lt;span>&lt;span style="color:#75715e"># 测试数据&lt;/span>
+&lt;/span>&lt;/span>&lt;span style="display:flex;">&lt;span>coords &lt;span style="color:#f92672">=&lt;/span> [(&lt;span style="color:#ae81ff">0&lt;/span>, &lt;span style="color:#ae81ff">0&lt;/span>), (&lt;span style="color:#ae81ff">1&lt;/span>, &lt;span style="color:#ae81ff">1&lt;/span>), (&lt;span style="color:#ae81ff">2&lt;/span>, &lt;span style="color:#ae81ff">2&lt;/span>), (&lt;span style="color:#ae81ff">3&lt;/span>, &lt;span style="color:#ae81ff">3&lt;/span>)]
+&lt;/span>&lt;/span>&lt;span style="display:flex;">&lt;span>target &lt;span style="color:#f92672">=&lt;/span> (&lt;span style="color:#ae81ff">1.5&lt;/span>, &lt;span style="color:#ae81ff">1.5&lt;/span>)
+&lt;/span>&lt;/span>&lt;span style="display:flex;">&lt;span>distances, indices &lt;span style="color:#f92672">=&lt;/span> find_nearest(coords, target)
+&lt;/span>&lt;/span>&lt;span style="display:flex;">&lt;span>print(&lt;span style="color:#e6db74">f&lt;/span>&lt;span style="color:#e6db74">&amp;#34;Nearest point index: &lt;/span>&lt;span style="color:#e6db74">{&lt;/span>indices&lt;span style="color:#e6db74">}&lt;/span>&lt;span style="color:#e6db74">, Distance: &lt;/span>&lt;span style="color:#e6db74">{&lt;/span>distances&lt;span style="color:#e6db74">}&lt;/span>&lt;span style="color:#e6db74">&amp;#34;&lt;/span>)
+&lt;/span>&lt;/span>&lt;/code>&lt;/pre>&lt;/div>&lt;p>&lt;strong>核心思想&lt;/strong>&lt;/p></description></item><item><title>Hello World</title><link>https://example.org/posts/hello-world/</link><pubDate>Sat, 26 Oct 2024 00:00:00 +0000</pubDate><guid>https://example.org/posts/hello-world/</guid><description>&lt;h2 id="hello-world-">Hello World 🌍&lt;/h2>
+&lt;p>欢迎来到我的第一篇博客！🎉&lt;/p>
+&lt;h3 id="简介">简介&lt;/h3>
+&lt;ul>
+&lt;li>本人的第一篇博客&lt;/li>
+&lt;li>网站基于 &lt;code>Github Pages + Hugo&lt;/code> 搭建&lt;/li>
+&lt;li>主题为&lt;a href="https://blowfish.page/">Blowfish&lt;/a>&lt;/li>
+&lt;/ul>
+&lt;h3 id="建站时间">建站时间&lt;/h3>
+&lt;p>📅 2024-10-24&lt;/p>
+&lt;h3 id="期待">期待&lt;/h3>
+&lt;p>希望以后能坚持更新，写一些有意义的博客。✍️&lt;/p>
+&lt;h3 id="感想">感想&lt;/h3>
+&lt;p>虽然花了很多时间，但感觉搭建的过程很有趣 😊，不枉我的一番胡乱折腾。&lt;/p>
+&lt;h3 id="参考">参考&lt;/h3>
+&lt;blockquote>
+&lt;p>网站图标：&lt;!-- raw HTML omitted -->Numpy&lt;!-- raw HTML omitted --> 的图标 &lt;!-- raw HTML omitted -->Icons8&lt;!-- raw HTML omitted -->&lt;/p>
+&lt;/blockquote>
+&lt;blockquote>
+&lt;p>标签页面：&lt;a href="https://www.zsl0621.cc/tags/">ZhenShuo2021&lt;/a>&lt;/p>
+&lt;/blockquote>
+&lt;blockquote>
+&lt;p>悬浮播放器，说说：&lt;a href="https://www.karlukle.site/blogs/site-build/">金圣皓&lt;/a>&lt;/p>
+&lt;/blockquote>
+&lt;blockquote>
+&lt;p>评论系统：&lt;a href="https://utteranc.es/">utterances&lt;/a>&lt;/p>
+&lt;/blockquote>
+&lt;blockquote>
+&lt;p>主页诗词调用：&lt;a href="https://www.jinrishici.com/">今日诗词 API&lt;/a>&lt;/p>
+&lt;/blockquote></description></item></channel></rss>

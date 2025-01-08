@@ -1,1 +1,30 @@
-<?xml version="1.0" encoding="utf-8" standalone="yes"?><rss version="2.0" xmlns:atom="http://www.w3.org/2005/Atom"><channel><title>第一篇 on Foraeu Blog</title><link>https://foraeu.github.io/tags/%E7%AC%AC%E4%B8%80%E7%AF%87/</link><description>Recent content in 第一篇 on Foraeu Blog</description><generator>Hugo -- gohugo.io</generator><language>zh-cn</language><copyright>© 2024 Foraeu</copyright><lastBuildDate>Sat, 26 Oct 2024 00:00:00 +0000</lastBuildDate><atom:link href="https://foraeu.github.io/tags/%E7%AC%AC%E4%B8%80%E7%AF%87/index.xml" rel="self" type="application/rss+xml"/><item><title>Hello World</title><link>https://foraeu.github.io/posts/0/</link><pubDate>Sat, 26 Oct 2024 00:00:00 +0000</pubDate><guid>https://foraeu.github.io/posts/0/</guid><description/></item></channel></rss>
+<?xml version="1.0" encoding="utf-8" standalone="yes"?><rss version="2.0" xmlns:atom="http://www.w3.org/2005/Atom"><channel><title>第一篇 on Foraeu Blog</title><link>https://example.org/tags/%E7%AC%AC%E4%B8%80%E7%AF%87/</link><description>Recent content in 第一篇 on Foraeu Blog</description><generator>Hugo</generator><language>en-us</language><lastBuildDate>Sat, 26 Oct 2024 00:00:00 +0000</lastBuildDate><atom:link href="https://example.org/tags/%E7%AC%AC%E4%B8%80%E7%AF%87/index.xml" rel="self" type="application/rss+xml"/><item><title>Hello World</title><link>https://example.org/posts/hello-world/</link><pubDate>Sat, 26 Oct 2024 00:00:00 +0000</pubDate><guid>https://example.org/posts/hello-world/</guid><description>&lt;h2 id="hello-world-">Hello World 🌍&lt;/h2>
+&lt;p>欢迎来到我的第一篇博客！🎉&lt;/p>
+&lt;h3 id="简介">简介&lt;/h3>
+&lt;ul>
+&lt;li>本人的第一篇博客&lt;/li>
+&lt;li>网站基于 &lt;code>Github Pages + Hugo&lt;/code> 搭建&lt;/li>
+&lt;li>主题为&lt;a href="https://blowfish.page/">Blowfish&lt;/a>&lt;/li>
+&lt;/ul>
+&lt;h3 id="建站时间">建站时间&lt;/h3>
+&lt;p>📅 2024-10-24&lt;/p>
+&lt;h3 id="期待">期待&lt;/h3>
+&lt;p>希望以后能坚持更新，写一些有意义的博客。✍️&lt;/p>
+&lt;h3 id="感想">感想&lt;/h3>
+&lt;p>虽然花了很多时间，但感觉搭建的过程很有趣 😊，不枉我的一番胡乱折腾。&lt;/p>
+&lt;h3 id="参考">参考&lt;/h3>
+&lt;blockquote>
+&lt;p>网站图标：&lt;!-- raw HTML omitted -->Numpy&lt;!-- raw HTML omitted --> 的图标 &lt;!-- raw HTML omitted -->Icons8&lt;!-- raw HTML omitted -->&lt;/p>
+&lt;/blockquote>
+&lt;blockquote>
+&lt;p>标签页面：&lt;a href="https://www.zsl0621.cc/tags/">ZhenShuo2021&lt;/a>&lt;/p>
+&lt;/blockquote>
+&lt;blockquote>
+&lt;p>悬浮播放器，说说：&lt;a href="https://www.karlukle.site/blogs/site-build/">金圣皓&lt;/a>&lt;/p>
+&lt;/blockquote>
+&lt;blockquote>
+&lt;p>评论系统：&lt;a href="https://utteranc.es/">utterances&lt;/a>&lt;/p>
+&lt;/blockquote>
+&lt;blockquote>
+&lt;p>主页诗词调用：&lt;a href="https://www.jinrishici.com/">今日诗词 API&lt;/a>&lt;/p>
+&lt;/blockquote></description></item></channel></rss>

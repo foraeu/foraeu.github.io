@@ -1,0 +1,91 @@
+.poetry-page {
+    display: grid;
+    grid-template-columns: repeat(auto-fit, minmax(250px, 1fr));
+    gap: 1rem;
+    padding: 2rem;
+    max-width: 1200px;
+    margin: 0 auto;
+}
+
+.poetry-title {
+    text-align: center;
+    font-size: 2.5rem;
+    color: #8B4513;
+    margin-bottom: 3rem;
+    font-family: "华文行楷", "楷体", "KaiTi", serif;
+    text-shadow: 2px 2px 4px rgba(0, 0, 0, 0.1);
+    position: relative;
+}
+
+.poetry-title::after {
+    content: "『 经典收藏 』";
+    display: block;
+    font-size: 1rem;
+    color: #A0522D;
+    margin-top: 1rem;
+    font-family: "楷体", "KaiTi", serif;
+}
+
+.poetry-content {
+    display: grid;
+    grid-template-columns: repeat(auto-fit, minmax(250px, 1fr)); /* 减小最小宽度 */
+    gap: 1rem; /* 减小间距 */
+    padding: 0.5rem; /* 减小内边距 */
+}
+
+.poem-card {
+    position: relative;
+    margin: 1rem 0; /* 减小上下间距 */
+    perspective: 1000px;
+    background: rgba(253, 250, 245, 0.95);
+    border-radius: 8px;
+    box-shadow: 0 2px 20px rgba(139, 69, 19, 0.1);
+}
+
+.poem-content {
+    position: relative;
+    padding: 1.5rem; /* 减小内边距 */
+    background: rgba(255, 255, 255, 0.3);
+    backdrop-filter: blur(10px);
+    -webkit-backdrop-filter: blur(10px);
+    border-radius: 12px; /* 稍微减小圆角 */
+    border: 1px solid rgba(255, 255, 255, 0.4);
+    box-shadow: 0 4px 16px rgba(0, 0, 0, 0.1); /* 减小阴影 */
+    transform-style: preserve-3d;
+    transition: all 0.4s ease;
+}
+
+.poem-text {
+    font-family: "华文行楷", "楷体", "KaiTi", serif;
+    font-size: 1.3rem; /* 稍微减小字号 */
+    line-height: 1.8; /* 减小行高 */
+    color: #2c3e50;
+    text-align: center;
+    margin-bottom: 0.5rem; /* 减小底部间距 */
+    text-shadow: 1px 1px 2px rgba(0, 0, 0, 0.1);
+}
+
+.poem-author {
+    font-family: "楷体", "KaiTi", serif;
+    font-size: 1rem;
+    color: #8B4513;
+    text-align: right;
+    margin-top: 0.5rem; /* 减小上边距 */
+    opacity: 0.8;
+}
+
+/* 响应式调整 */
+@media (max-width: 768px) {
+    .poetry-content {
+        grid-template-columns: 1fr;
+        gap: 0.8rem;
+    }
+
+    .poem-text {
+        font-size: 1.2rem;
+    }
+    
+    .poem-content {
+        padding: 1rem;
+    }
+}

@@ -1,0 +1,74 @@
+<!doctype html><html lang=en-us><head><meta charset=UTF-8><meta name=viewport content="width=device-width,initial-scale=1"><title>距离计算的优化方法 - Foraeu Blog</title>
+<link rel=stylesheet href=/css/style.css><link rel=stylesheet href=/css/talks.css><script src=/js/main.js></script></head><body><header><div class=container><div class=header-content><div class=site-title><img src=/img/avatar.png alt=avatar class=avatar-img>
+<a href=https://example.org/>Foraeu Blog</a></div><nav class=site-nav><a class=nav-link href=/>Home</a>
+<a class=nav-link href=/posts/>Posts</a>
+<a class=nav-link href=/talks/>Talks</a>
+<a class=nav-link href=/tags/>Tags</a>
+<a class=nav-link href=/poetry/>Poetry</a>
+<a class=nav-link href=/music/>Music</a></nav></div></div></header><main class=container><div class=content-wrapper><article class=article-main><nav class="table-of-contents my-4 p-4 bg-gray-100 dark:bg-gray-800 rounded"><h2 class="text-xl font-semibold mb-2" style="font-family:Consolas,Monaco,jetbrains mono,monospace">Table of Contents</h2><nav id=TableOfContents><ul><li><a href=#前言>前言</a></li><li><a href=#坐标距离计算方法>坐标距离计算方法</a><ul><li><a href=#1-numpy的向量化>1. NumPy的向量化</a></li><li><a href=#2-kd树>2. KD树</a></li><li><a href=#3-数据分块>3. 数据分块</a></li><li><a href=#4-使用cython或numba>4. 使用Cython或Numba</a></li></ul></li></ul></nav></nav><h1 style=text-align:center>距离计算的优化方法</h1><time style=display:block;text-align:center;font-size:1.2em>2024-10-30</time><div class=article-content><h2 id=前言>前言</h2><p>在处理包含地理坐标的数据时，常常涉及到计算两个或多个坐标之间的欧式距离。当处理大量的数据点时，计算两两之间的距离会变得非常耗时，因为随着数据点的增加，组合的数量呈二次方增长。在<code>python</code>中，除了常规的<code>for</code>循环，还有哪些方法能够更高效地计算距离呢</p><h2 id=坐标距离计算方法>坐标距离计算方法</h2><h3 id=1-numpy的向量化>1. NumPy的向量化</h3><p><code>NumPy</code>是一个高效的数值计算库，提供了向量化操作的能力，可以避免使用循环。通过将数据组织为数组，我们可以一次性计算多个距离。</p><p><strong>示例代码</strong></p><div class=highlight><pre tabindex=0 style=color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4><code class=language-python data-lang=python><span style=display:flex><span><span style=color:#f92672>import</span> numpy <span style=color:#66d9ef>as</span> np
+</span></span><span style=display:flex><span>
+</span></span><span style=display:flex><span><span style=color:#66d9ef>def</span> <span style=color:#a6e22e>calculate_distances</span>(coords1, coords2):
+</span></span><span style=display:flex><span>    <span style=color:#75715e># 将坐标转换为NumPy数组</span>
+</span></span><span style=display:flex><span>    coords1 <span style=color:#f92672>=</span> np<span style=color:#f92672>.</span>array(coords1)
+</span></span><span style=display:flex><span>    coords2 <span style=color:#f92672>=</span> np<span style=color:#f92672>.</span>array(coords2)
+</span></span><span style=display:flex><span>    
+</span></span><span style=display:flex><span>    <span style=color:#75715e># 计算两两之间的距离</span>
+</span></span><span style=display:flex><span>    dists <span style=color:#f92672>=</span> np<span style=color:#f92672>.</span>sqrt(np<span style=color:#f92672>.</span>sum((coords1[:, np<span style=color:#f92672>.</span>newaxis] <span style=color:#f92672>-</span> coords2) <span style=color:#f92672>**</span> <span style=color:#ae81ff>2</span>, axis<span style=color:#f92672>=</span><span style=color:#ae81ff>2</span>))
+</span></span><span style=display:flex><span>    <span style=color:#66d9ef>return</span> dists
+</span></span><span style=display:flex><span>
+</span></span><span style=display:flex><span><span style=color:#75715e># 测试数据</span>
+</span></span><span style=display:flex><span>coords1 <span style=color:#f92672>=</span> [(<span style=color:#ae81ff>0</span>, <span style=color:#ae81ff>0</span>), (<span style=color:#ae81ff>1</span>, <span style=color:#ae81ff>1</span>), (<span style=color:#ae81ff>2</span>, <span style=color:#ae81ff>2</span>)]
+</span></span><span style=display:flex><span>coords2 <span style=color:#f92672>=</span> [(<span style=color:#ae81ff>1</span>, <span style=color:#ae81ff>0</span>), (<span style=color:#ae81ff>2</span>, <span style=color:#ae81ff>1</span>)]
+</span></span><span style=display:flex><span>distances <span style=color:#f92672>=</span> calculate_distances(coords1, coords2)
+</span></span><span style=display:flex><span>print(distances)
+</span></span></code></pre></div><p><strong>核心思想</strong></p><p>NumPy的向量化使我们能够利用底层的C语言实现来加速计算，而无需显式地编写循环。通过扩展数组的维度，我们能够在单次操作中计算多个距离，显著提高了性能。</p><h3 id=2-kd树>2. KD树</h3><p>KD树是一种空间分割的数据结构，可以快速地找到最近邻。对于大规模的点集合，KD树能够大幅度减少计算的复杂度。</p><p><strong>示例代码</strong></p><div class=highlight><pre tabindex=0 style=color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4><code class=language-python data-lang=python><span style=display:flex><span><span style=color:#f92672>from</span> scipy.spatial <span style=color:#f92672>import</span> KDTree
+</span></span><span style=display:flex><span>
+</span></span><span style=display:flex><span><span style=color:#66d9ef>def</span> <span style=color:#a6e22e>find_nearest</span>(coords, target):
+</span></span><span style=display:flex><span>    tree <span style=color:#f92672>=</span> KDTree(coords)
+</span></span><span style=display:flex><span>    distances, indices <span style=color:#f92672>=</span> tree<span style=color:#f92672>.</span>query(target)
+</span></span><span style=display:flex><span>    <span style=color:#66d9ef>return</span> distances, indices
+</span></span><span style=display:flex><span>
+</span></span><span style=display:flex><span><span style=color:#75715e># 测试数据</span>
+</span></span><span style=display:flex><span>coords <span style=color:#f92672>=</span> [(<span style=color:#ae81ff>0</span>, <span style=color:#ae81ff>0</span>), (<span style=color:#ae81ff>1</span>, <span style=color:#ae81ff>1</span>), (<span style=color:#ae81ff>2</span>, <span style=color:#ae81ff>2</span>), (<span style=color:#ae81ff>3</span>, <span style=color:#ae81ff>3</span>)]
+</span></span><span style=display:flex><span>target <span style=color:#f92672>=</span> (<span style=color:#ae81ff>1.5</span>, <span style=color:#ae81ff>1.5</span>)
+</span></span><span style=display:flex><span>distances, indices <span style=color:#f92672>=</span> find_nearest(coords, target)
+</span></span><span style=display:flex><span>print(<span style=color:#e6db74>f</span><span style=color:#e6db74>&#34;Nearest point index: </span><span style=color:#e6db74>{</span>indices<span style=color:#e6db74>}</span><span style=color:#e6db74>, Distance: </span><span style=color:#e6db74>{</span>distances<span style=color:#e6db74>}</span><span style=color:#e6db74>&#34;</span>)
+</span></span></code></pre></div><p><strong>核心思想</strong></p><p>KD树通过空间划分，将数据组织成树状结构，使得在高维空间中查找最近邻变得更加高效，避免了遍历所有点的必要性。</p><h3 id=3-数据分块>3. 数据分块</h3><p>当数据集过大时，可以考虑将数据分块处理。通过将数据划分为小块，我们可以在每次计算时只处理一部分数据，从而降低内存使用和提高速度。</p><p><strong>示例代码</strong></p><div class=highlight><pre tabindex=0 style=color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4><code class=language-python data-lang=python><span style=display:flex><span><span style=color:#66d9ef>def</span> <span style=color:#a6e22e>chunked_distances</span>(coords1, coords2, chunk_size):
+</span></span><span style=display:flex><span>    dists <span style=color:#f92672>=</span> []
+</span></span><span style=display:flex><span>    <span style=color:#66d9ef>for</span> i <span style=color:#f92672>in</span> range(<span style=color:#ae81ff>0</span>, len(coords1), chunk_size):
+</span></span><span style=display:flex><span>        chunk <span style=color:#f92672>=</span> coords1[i:i <span style=color:#f92672>+</span> chunk_size]
+</span></span><span style=display:flex><span>        dists<span style=color:#f92672>.</span>append(calculate_distances(chunk, coords2))
+</span></span><span style=display:flex><span>    <span style=color:#66d9ef>return</span> np<span style=color:#f92672>.</span>concatenate(dists)
+</span></span><span style=display:flex><span>
+</span></span><span style=display:flex><span><span style=color:#75715e># 测试数据</span>
+</span></span><span style=display:flex><span>chunked_dists <span style=color:#f92672>=</span> chunked_distances(coords1, coords2, chunk_size<span style=color:#f92672>=</span><span style=color:#ae81ff>2</span>)
+</span></span><span style=display:flex><span>print(chunked_dists)
+</span></span></code></pre></div><p><strong>核心思想</strong></p><p>数据分块允许我们在内存有限的情况下处理大规模数据集，分块计算可以减少对内存的压力，同时保持计算的灵活性。</p><h3 id=4-使用cython或numba>4. 使用Cython或Numba</h3><p><code>Cython</code>和<code>Numba</code>都是用于加速Python代码的工具。Cython通过将Python代码编译为C代码来加速计算，而Numba则通过即时编译（JIT）优化数值计算。</p><p><strong>示例代码</strong></p><div class=highlight><pre tabindex=0 style=color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4><code class=language-python data-lang=python><span style=display:flex><span><span style=color:#f92672>from</span> numba <span style=color:#f92672>import</span> jit
+</span></span><span style=display:flex><span>
+</span></span><span style=display:flex><span><span style=color:#a6e22e>@jit</span>(nopython<span style=color:#f92672>=</span><span style=color:#66d9ef>True</span>)
+</span></span><span style=display:flex><span><span style=color:#66d9ef>def</span> <span style=color:#a6e22e>fast_calculate_distances</span>(coords1, coords2):
+</span></span><span style=display:flex><span>    dists <span style=color:#f92672>=</span> np<span style=color:#f92672>.</span>zeros((len(coords1), len(coords2)))
+</span></span><span style=display:flex><span>    <span style=color:#66d9ef>for</span> i <span style=color:#f92672>in</span> range(len(coords1)):
+</span></span><span style=display:flex><span>        <span style=color:#66d9ef>for</span> j <span style=color:#f92672>in</span> range(len(coords2)):
+</span></span><span style=display:flex><span>            dists[i, j] <span style=color:#f92672>=</span> np<span style=color:#f92672>.</span>sqrt((coords1[i, <span style=color:#ae81ff>0</span>] <span style=color:#f92672>-</span> coords2[j, <span style=color:#ae81ff>0</span>]) <span style=color:#f92672>**</span> <span style=color:#ae81ff>2</span> <span style=color:#f92672>+</span> (coords1[i, <span style=color:#ae81ff>1</span>] <span style=color:#f92672>-</span> coords2[j, <span style=color:#ae81ff>1</span>]) <span style=color:#f92672>**</span> <span style=color:#ae81ff>2</span>)
+</span></span><span style=display:flex><span>    <span style=color:#66d9ef>return</span> dists
+</span></span><span style=display:flex><span>
+</span></span><span style=display:flex><span><span style=color:#75715e># 测试数据</span>
+</span></span><span style=display:flex><span>coords1 <span style=color:#f92672>=</span> np<span style=color:#f92672>.</span>array([(<span style=color:#ae81ff>0</span>, <span style=color:#ae81ff>0</span>), (<span style=color:#ae81ff>1</span>, <span style=color:#ae81ff>1</span>), (<span style=color:#ae81ff>2</span>, <span style=color:#ae81ff>2</span>)])
+</span></span><span style=display:flex><span>coords2 <span style=color:#f92672>=</span> np<span style=color:#f92672>.</span>array([(<span style=color:#ae81ff>1</span>, <span style=color:#ae81ff>0</span>), (<span style=color:#ae81ff>2</span>, <span style=color:#ae81ff>1</span>)])
+</span></span><span style=display:flex><span>distances <span style=color:#f92672>=</span> fast_calculate_distances(coords1, coords2)
+</span></span><span style=display:flex><span>print(distances)
+</span></span></code></pre></div><p><strong>核心思想</strong></p><p>通过使用Cython或Numba，可以将Python的动态特性转化为静态类型，从而极大地提高计算速度，尤其是在进行大量重复计算时。</p></div><div class=pt-3><hr class="border-dotted border-neutral-300 dark:border-neutral-600"><div class=pt-3><head><link rel=stylesheet href=https://unpkg.com/@waline/client@v2/dist/waline.css></head><body><div id=waline></div><script type=module>
+    import { init } from 'https://unpkg.com/@waline/client@v2/dist/waline.mjs';
+
+    init({
+      el: '#waline',
+      serverURL: 'https://waline.foraeu.top/',
+      lang: 'zh-CN',
+      
+      wordLimit: 500,
+      search: false,
+      pageview: true,
+      dark: 'html[class="scroll-smooth dark"]',
+    });
+  </script></body></div></div></article></div></main><footer><div class=container><div class=footer-content><div class=copyright>© 2024-2025 <span class=author>foraeu</span></div></div></div></footer></body></html>

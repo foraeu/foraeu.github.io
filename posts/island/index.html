@@ -1,0 +1,337 @@
+<!doctype html><html lang=en-us><head><meta charset=UTF-8><meta name=viewport content="width=device-width,initial-scale=1"><title>Blowfish主题：更cool的悬浮导航栏 - Foraeu Blog</title>
+<link rel=stylesheet href=/css/style.css><link rel=stylesheet href=/css/talks.css><script src=/js/main.js></script></head><body><header><div class=container><div class=header-content><div class=site-title><img src=/img/avatar.png alt=avatar class=avatar-img>
+<a href=https://example.org/>Foraeu Blog</a></div><nav class=site-nav><a class=nav-link href=/>Home</a>
+<a class=nav-link href=/posts/>Posts</a>
+<a class=nav-link href=/talks/>Talks</a>
+<a class=nav-link href=/tags/>Tags</a>
+<a class=nav-link href=/poetry/>Poetry</a>
+<a class=nav-link href=/music/>Music</a></nav></div></div></header><main class=container><div class=content-wrapper><article class=article-main><nav class="table-of-contents my-4 p-4 bg-gray-100 dark:bg-gray-800 rounded"><h2 class="text-xl font-semibold mb-2" style="font-family:Consolas,Monaco,jetbrains mono,monospace">Table of Contents</h2><nav id=TableOfContents><ul><li><a href=#缘起>缘起</a></li><li><a href=#设计想法>设计想法</a></li><li><a href=#实现>实现</a></li></ul></nav></nav><h1 style=text-align:center>Blowfish主题：更cool的悬浮导航栏</h1><time style=display:block;text-align:center;font-size:1.2em>2024-11-19</time><div class=article-content><h2 id=缘起>缘起</h2><p>为什么要去自定义一个头部导航栏？其实<code>blowfish</code>本身已经提供了很多的样式，比如最基本的<code>basic</code>，还有各种的<code>fixed</code>。只论实用性的话，或许<code>blowfish</code>自带的这些已经很好了，看起来简约大方。但是根据自己的想法去diy一个看起来cool的设计，可能是不少折腾网站的人都会踩过的坑吧。</p><p>设计这个菜单栏的想法来自<a href=https://www.jrhim.com/>加绒</a>的<a href=https://www.jrhim.com/posts/series-decorating/island-header/>Hugo Blowfish 自定义：导航栏上磨砂岛</a>，可能是看惯了自己原本的fixed导航栏，第一次看到这种居中悬浮的设计觉得挺有意思。这位博主在文中描述了最重要的几个部分，并将源代码放在文末。对于我这种见好就收的白嫖党，第一想法肯定是二话不说咣咣复制。但是，遗憾的是，文末的html文件似乎失效了，于是乎只能摸着石头过河，从蛛丝马迹中尝试复现。</p><h2 id=设计想法>设计想法</h2><p>菜单栏的设计包括以下几个方面：</p><ol><li>悬浮居中，边框圆角</li><li>长度适中，蓝绿渐变</li><li>下划隐藏，上划显示</li><li>顶部透明，逐渐模糊</li></ol><p>对于我这种只学过一点点编程，而且从没学过前端的新手来说，单独靠自己是完全不可能实现这些想法的。于是，我尝试把想法转译成具体的命令，借助AI帮我完成。恰好github有教育版免费的Copilot（非常nice），可以使用的模型有Clade 3.5 Sonnet、GPT 4和o1 mini等。</p><p>接下来就是各种各样的试错环节，报错是千奇百怪的，比如导航栏消失了，按钮点不动，颜色使用一直不对等情况，反正挺考验人的心态。最后我给出的命令是让ai参照原本的basic.html去写，非必要不更改。在几个大模型中，只有Clade给出了正确答案。</p><h2 id=实现>实现</h2><p>首先需要新建<code>/layouts/partials/header/float.html</code>文件，然后在<code>params.toml</code>中将header选项下的layout设置成float。接下来将这段代码复制到<code>float.html</code>中：</p><div class=collapse-panel><div class=collapse-header><span class=collapse-title>float.html</span>
+<span class=collapse-icon>▼</span></div><div class=collapse-content><div class=collapse-inner><div class=highlight><pre tabindex=0 style=color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4><code class=language-html data-lang=html><span style=display:flex><span><span style=color:#75715e>&lt;!-- 更新滚动控制脚本 --&gt;</span>
+</span></span><span style=display:flex><span><span style=color:#75715e>&lt;!-- 更新滚动控制脚本 --&gt;</span>
+</span></span><span style=display:flex><span>&lt;<span style=color:#f92672>script</span>&gt;
+</span></span><span style=display:flex><span><span style=color:#66d9ef>let</span> <span style=color:#a6e22e>lastScrollTop</span> <span style=color:#f92672>=</span> <span style=color:#ae81ff>0</span>;
+</span></span><span style=display:flex><span><span style=color:#66d9ef>let</span> <span style=color:#a6e22e>lastScrollDirection</span> <span style=color:#f92672>=</span> <span style=color:#ae81ff>0</span>;
+</span></span><span style=display:flex><span><span style=color:#66d9ef>let</span> <span style=color:#a6e22e>island_header_style_top</span> <span style=color:#f92672>=</span> <span style=color:#ae81ff>15</span>;
+</span></span><span style=display:flex><span><span style=color:#66d9ef>let</span> <span style=color:#a6e22e>accumulated_scroll</span> <span style=color:#f92672>=</span> <span style=color:#ae81ff>0</span>;
+</span></span><span style=display:flex><span>
+</span></span><span style=display:flex><span>window.<span style=color:#a6e22e>addEventListener</span>(<span style=color:#e6db74>&#34;scroll&#34;</span>, <span style=color:#66d9ef>function</span> () {
+</span></span><span style=display:flex><span>    <span style=color:#66d9ef>const</span> <span style=color:#a6e22e>scroll</span> <span style=color:#f92672>=</span> window.<span style=color:#a6e22e>pageYOffset</span> <span style=color:#f92672>||</span> document.<span style=color:#a6e22e>documentElement</span>.<span style=color:#a6e22e>scrollTop</span> <span style=color:#f92672>||</span> document.<span style=color:#a6e22e>body</span>.<span style=color:#a6e22e>scrollTop</span> <span style=color:#f92672>||</span> <span style=color:#ae81ff>0</span>;
+</span></span><span style=display:flex><span>    <span style=color:#66d9ef>let</span> <span style=color:#a6e22e>currScrollDirection</span> <span style=color:#f92672>=</span> <span style=color:#a6e22e>scroll</span> <span style=color:#f92672>-</span> <span style=color:#a6e22e>lastScrollTop</span> <span style=color:#f92672>&gt;</span> <span style=color:#ae81ff>0</span> <span style=color:#f92672>?</span> <span style=color:#ae81ff>1</span> <span style=color:#f92672>:</span> <span style=color:#f92672>-</span><span style=color:#ae81ff>1</span>;
+</span></span><span style=display:flex><span>    
+</span></span><span style=display:flex><span>    <span style=color:#66d9ef>const</span> <span style=color:#a6e22e>island_header</span> <span style=color:#f92672>=</span> document.<span style=color:#a6e22e>getElementById</span>(<span style=color:#e6db74>&#34;island-header&#34;</span>);
+</span></span><span style=display:flex><span>    <span style=color:#66d9ef>const</span> <span style=color:#a6e22e>subheader</span> <span style=color:#f92672>=</span> document.<span style=color:#a6e22e>querySelector</span>(<span style=color:#e6db74>&#39;.main-menu + .main-menu&#39;</span>);
+</span></span><span style=display:flex><span>    
+</span></span><span style=display:flex><span>    <span style=color:#75715e>// 计算透明度和模糊度
+</span></span></span><span style=display:flex><span><span style=color:#75715e></span>    <span style=color:#66d9ef>const</span> <span style=color:#a6e22e>opacity</span> <span style=color:#f92672>=</span> Math.<span style=color:#a6e22e>min</span>(<span style=color:#a6e22e>scroll</span> <span style=color:#f92672>/</span> <span style=color:#ae81ff>300</span>, <span style=color:#ae81ff>0.9</span>);
+</span></span><span style=display:flex><span>    <span style=color:#66d9ef>const</span> <span style=color:#a6e22e>blur</span> <span style=color:#f92672>=</span> Math.<span style=color:#a6e22e>min</span>(<span style=color:#a6e22e>scroll</span> <span style=color:#f92672>/</span> <span style=color:#ae81ff>100</span> <span style=color:#f92672>*</span> <span style=color:#ae81ff>10</span>, <span style=color:#ae81ff>10</span>);
+</span></span><span style=display:flex><span>    
+</span></span><span style=display:flex><span>    <span style=color:#75715e>// 应用背景和模糊效果
+</span></span></span><span style=display:flex><span><span style=color:#75715e></span>    <span style=color:#a6e22e>island_header</span>.<span style=color:#a6e22e>style</span>.<span style=color:#a6e22e>backgroundColor</span> <span style=color:#f92672>=</span> <span style=color:#e6db74>`rgba(255, 255, 255, </span><span style=color:#e6db74>${</span><span style=color:#a6e22e>opacity</span><span style=color:#e6db74>}</span><span style=color:#e6db74>)`</span>;
+</span></span><span style=display:flex><span>    <span style=color:#a6e22e>island_header</span>.<span style=color:#a6e22e>style</span>.<span style=color:#a6e22e>backdropFilter</span> <span style=color:#f92672>=</span> <span style=color:#e6db74>`blur(</span><span style=color:#e6db74>${</span><span style=color:#a6e22e>blur</span><span style=color:#e6db74>}</span><span style=color:#e6db74>px)`</span>;
+</span></span><span style=display:flex><span>    <span style=color:#66d9ef>if</span>(<span style=color:#a6e22e>subheader</span>) {
+</span></span><span style=display:flex><span>        <span style=color:#a6e22e>subheader</span>.<span style=color:#a6e22e>style</span>.<span style=color:#a6e22e>backgroundColor</span> <span style=color:#f92672>=</span> <span style=color:#e6db74>`rgba(255, 255, 255, </span><span style=color:#e6db74>${</span><span style=color:#a6e22e>opacity</span><span style=color:#e6db74>}</span><span style=color:#e6db74>)`</span>;
+</span></span><span style=display:flex><span>        <span style=color:#a6e22e>subheader</span>.<span style=color:#a6e22e>style</span>.<span style=color:#a6e22e>backdropFilter</span> <span style=color:#f92672>=</span> <span style=color:#e6db74>`blur(</span><span style=color:#e6db74>${</span><span style=color:#a6e22e>blur</span><span style=color:#e6db74>}</span><span style=color:#e6db74>px)`</span>;
+</span></span><span style=display:flex><span>    }
+</span></span><span style=display:flex><span>    
+</span></span><span style=display:flex><span>    <span style=color:#75715e>// 处理滚动隐藏逻辑
+</span></span></span><span style=display:flex><span><span style=color:#75715e></span>    <span style=color:#66d9ef>if</span> (<span style=color:#a6e22e>scroll</span> <span style=color:#f92672>&gt;</span> <span style=color:#ae81ff>100</span>) {
+</span></span><span style=display:flex><span>        <span style=color:#66d9ef>if</span> (<span style=color:#a6e22e>currScrollDirection</span> <span style=color:#f92672>!==</span> <span style=color:#a6e22e>lastScrollDirection</span>) {
+</span></span><span style=display:flex><span>            <span style=color:#a6e22e>accumulated_scroll</span> <span style=color:#f92672>=</span> <span style=color:#ae81ff>0</span>;
+</span></span><span style=display:flex><span>        } <span style=color:#66d9ef>else</span> {
+</span></span><span style=display:flex><span>            <span style=color:#a6e22e>accumulated_scroll</span> <span style=color:#f92672>+=</span> Math.<span style=color:#a6e22e>abs</span>(<span style=color:#a6e22e>scroll</span> <span style=color:#f92672>-</span> <span style=color:#a6e22e>lastScrollTop</span>);
+</span></span><span style=display:flex><span>        }
+</span></span><span style=display:flex><span>        
+</span></span><span style=display:flex><span>        <span style=color:#66d9ef>if</span> (<span style=color:#a6e22e>accumulated_scroll</span> <span style=color:#f92672>&gt;</span> <span style=color:#ae81ff>50</span> <span style=color:#f92672>||</span> <span style=color:#a6e22e>currScrollDirection</span> <span style=color:#f92672>==</span> <span style=color:#f92672>-</span><span style=color:#ae81ff>1</span>) {
+</span></span><span style=display:flex><span>            <span style=color:#75715e>// 计算新的top值
+</span></span></span><span style=display:flex><span><span style=color:#75715e></span>            <span style=color:#a6e22e>island_header_style_top</span> <span style=color:#f92672>=</span> <span style=color:#a6e22e>currScrollDirection</span> <span style=color:#f92672>===</span> <span style=color:#ae81ff>1</span> <span style=color:#f92672>?</span> 
+</span></span><span style=display:flex><span>                Math.<span style=color:#a6e22e>max</span>(<span style=color:#f92672>-</span><span style=color:#ae81ff>100</span>, <span style=color:#a6e22e>island_header_style_top</span> <span style=color:#f92672>-</span> <span style=color:#ae81ff>15</span>) <span style=color:#f92672>:</span> <span style=color:#75715e>// 向下滚动
+</span></span></span><span style=display:flex><span><span style=color:#75715e></span>                Math.<span style=color:#a6e22e>min</span>(<span style=color:#ae81ff>15</span>, <span style=color:#a6e22e>island_header_style_top</span> <span style=color:#f92672>+</span> <span style=color:#ae81ff>15</span>);    <span style=color:#75715e>// 向上滚动
+</span></span></span><span style=display:flex><span><span style=color:#75715e></span>                
+</span></span><span style=display:flex><span>            <span style=color:#75715e>// 应用变换
+</span></span></span><span style=display:flex><span><span style=color:#75715e></span>            <span style=color:#a6e22e>island_header</span>.<span style=color:#a6e22e>style</span>.<span style=color:#a6e22e>transform</span> <span style=color:#f92672>=</span> <span style=color:#e6db74>`translateX(-50%) translateY(</span><span style=color:#e6db74>${</span><span style=color:#a6e22e>island_header_style_top</span><span style=color:#e6db74>}</span><span style=color:#e6db74>px)`</span>;
+</span></span><span style=display:flex><span>            <span style=color:#66d9ef>if</span>(<span style=color:#a6e22e>subheader</span>) {
+</span></span><span style=display:flex><span>                <span style=color:#a6e22e>subheader</span>.<span style=color:#a6e22e>style</span>.<span style=color:#a6e22e>transform</span> <span style=color:#f92672>=</span> <span style=color:#e6db74>`translateX(-50%) translateY(</span><span style=color:#e6db74>${</span><span style=color:#a6e22e>island_header_style_top</span> <span style=color:#f92672>+</span> <span style=color:#ae81ff>50</span><span style=color:#e6db74>}</span><span style=color:#e6db74>px)`</span>;
+</span></span><span style=display:flex><span>            }
+</span></span><span style=display:flex><span>        }
+</span></span><span style=display:flex><span>    }
+</span></span><span style=display:flex><span>    
+</span></span><span style=display:flex><span>    <span style=color:#a6e22e>lastScrollTop</span> <span style=color:#f92672>=</span> <span style=color:#a6e22e>scroll</span>;
+</span></span><span style=display:flex><span>    <span style=color:#a6e22e>lastScrollDirection</span> <span style=color:#f92672>=</span> <span style=color:#a6e22e>currScrollDirection</span>;
+</span></span><span style=display:flex><span>});
+</span></span><span style=display:flex><span>&lt;/<span style=color:#f92672>script</span>&gt;
+</span></span><span style=display:flex><span>
+</span></span><span style=display:flex><span><span style=color:#75715e>&lt;!-- 主要导航栏容器 --&gt;</span>
+</span></span><span style=display:flex><span>&lt;<span style=color:#f92672>div</span> <span style=color:#a6e22e>id</span><span style=color:#f92672>=</span><span style=color:#e6db74>&#34;island-header&#34;</span> <span style=color:#a6e22e>style</span><span style=color:#f92672>=</span><span style=color:#e6db74>&#34;
+</span></span></span><span style=display:flex><span><span style=color:#e6db74>    position: fixed;
+</span></span></span><span style=display:flex><span><span style=color:#e6db74>    top: 15px;
+</span></span></span><span style=display:flex><span><span style=color:#e6db74>    left: 50%;
+</span></span></span><span style=display:flex><span><span style=color:#e6db74>    transform: translateX(-50%);
+</span></span></span><span style=display:flex><span><span style=color:#e6db74>    width: 90%;  /* 移动端下宽度更大 */
+</span></span></span><span style=display:flex><span><span style=color:#e6db74>    max-width: 900px;
+</span></span></span><span style=display:flex><span><span style=color:#e6db74>    background: linear-gradient(
+</span></span></span><span style=display:flex><span><span style=color:#e6db74>        135deg, 
+</span></span></span><span style=display:flex><span><span style=color:#e6db74>        rgba(255, 255, 255, 0.45),
+</span></span></span><span style=display:flex><span><span style=color:#e6db74>        rgba(147, 197, 253, 0.35) 20%,
+</span></span></span><span style=display:flex><span><span style=color:#e6db74>        rgba(167, 243, 208, 0.4) 50%,
+</span></span></span><span style=display:flex><span><span style=color:#e6db74>        rgba(147, 197, 253, 0.35) 80%,
+</span></span></span><span style=display:flex><span><span style=color:#e6db74>        rgba(110, 231, 183, 0.4)
+</span></span></span><span style=display:flex><span><span style=color:#e6db74>    );
+</span></span></span><span style=display:flex><span><span style=color:#e6db74>    backdrop-filter: blur(8px);
+</span></span></span><span style=display:flex><span><span style=color:#e6db74>    border: 1px solid rgba(255, 255, 255, 0.45);
+</span></span></span><span style=display:flex><span><span style=color:#e6db74>    border-radius: 0.75rem;  /* 移动端圆角稍小 */
+</span></span></span><span style=display:flex><span><span style=color:#e6db74>    box-shadow: 
+</span></span></span><span style=display:flex><span><span style=color:#e6db74>        0 4px 6px rgba(0, 0, 0, 0.03),
+</span></span></span><span style=display:flex><span><span style=color:#e6db74>        0 1px 3px rgba(147, 197, 253, 0.2) inset,
+</span></span></span><span style=display:flex><span><span style=color:#e6db74>        0 2px 6px rgba(167, 243, 208, 0.15) inset;
+</span></span></span><span style=display:flex><span><span style=color:#e6db74>    transition: all 0.3s ease;
+</span></span></span><span style=display:flex><span><span style=color:#e6db74>    z-index: 1000;
+</span></span></span><span style=display:flex><span><span style=color:#e6db74>    padding: 0.25rem;  /* 移动端内边距更小 */
+</span></span></span><span style=display:flex><span><span style=color:#e6db74>    @media (min-width: 768px) {  /* 桌面端样式 */
+</span></span></span><span style=display:flex><span><span style=color:#e6db74>        width: 70%;
+</span></span></span><span style=display:flex><span><span style=color:#e6db74>        padding: 0.25rem 0.5rem;
+</span></span></span><span style=display:flex><span><span style=color:#e6db74>        border-radius: 1rem;
+</span></span></span><span style=display:flex><span><span style=color:#e6db74>    }
+</span></span></span><span style=display:flex><span><span style=color:#e6db74>    &#34;</span>
+</span></span><span style=display:flex><span>    <span style=color:#a6e22e>class</span><span style=color:#f92672>=</span><span style=color:#e6db74>&#34;main-menu flex items-center justify-between px-2 py-1 sm:px-6 md:justify-start space-x-3&#34;</span>&gt;  
+</span></span><span style=display:flex><span>    
+</span></span><span style=display:flex><span>    {{ if .Site.Params.Logo }}
+</span></span><span style=display:flex><span>    {{ $logo := resources.Get .Site.Params.Logo }}
+</span></span><span style=display:flex><span>    {{ if $logo }}
+</span></span><span style=display:flex><span>    &lt;<span style=color:#f92672>div</span>&gt;
+</span></span><span style=display:flex><span>        &lt;<span style=color:#f92672>a</span> <span style=color:#a6e22e>href</span><span style=color:#f92672>=</span><span style=color:#e6db74>&#34;{{ &#34;</span><span style=color:#960050;background-color:#1e0010>&#34;</span> <span style=color:#960050;background-color:#1e0010>|</span> <span style=color:#a6e22e>relLangURL</span> <span style=color:#960050;background-color:#1e0010>}}&#34;</span> <span style=color:#a6e22e>class</span><span style=color:#f92672>=</span><span style=color:#e6db74>&#34;flex&#34;</span>&gt;
+</span></span><span style=display:flex><span>            &lt;<span style=color:#f92672>span</span> <span style=color:#a6e22e>class</span><span style=color:#f92672>=</span><span style=color:#e6db74>&#34;sr-only&#34;</span>&gt;{{ .Site.Title | markdownify }}&lt;/<span style=color:#f92672>span</span>&gt;
+</span></span><span style=display:flex><span>
+</span></span><span style=display:flex><span>            {{ if eq $logo.MediaType.SubType &#34;svg&#34; }}
+</span></span><span style=display:flex><span>            &lt;<span style=color:#f92672>span</span> <span style=color:#a6e22e>class</span><span style=color:#f92672>=</span><span style=color:#e6db74>&#34;logo object-scale-down object-left nozoom&#34;</span>&gt;
+</span></span><span style=display:flex><span>                {{ $logo.Content | safeHTML }}
+</span></span><span style=display:flex><span>            &lt;/<span style=color:#f92672>span</span>&gt;
+</span></span><span style=display:flex><span>            {{ else }}
+</span></span><span style=display:flex><span>            &lt;<span style=color:#f92672>img</span> <span style=color:#a6e22e>src</span><span style=color:#f92672>=</span><span style=color:#e6db74>&#34;{{ $logo.RelPermalink }}&#34;</span> <span style=color:#a6e22e>width</span><span style=color:#f92672>=</span><span style=color:#e6db74>&#34;{{ div $logo.Width 2 }}&#34;</span> <span style=color:#a6e22e>height</span><span style=color:#f92672>=</span><span style=color:#e6db74>&#34;{{ div $logo.Height 2 }}&#34;</span>
+</span></span><span style=display:flex><span>                <span style=color:#a6e22e>class</span><span style=color:#f92672>=</span><span style=color:#e6db74>&#34;logo max-h-[5rem] max-w-[5rem] object-scale-down object-left nozoom&#34;</span> <span style=color:#a6e22e>alt</span><span style=color:#f92672>=</span><span style=color:#e6db74>&#34;{{ .Site.Title }}&#34;</span> /&gt;
+</span></span><span style=display:flex><span>            {{ end }}
+</span></span><span style=display:flex><span>
+</span></span><span style=display:flex><span>        &lt;/<span style=color:#f92672>a</span>&gt;
+</span></span><span style=display:flex><span>    &lt;/<span style=color:#f92672>div</span>&gt;
+</span></span><span style=display:flex><span>    {{ end }}
+</span></span><span style=display:flex><span>    {{- end }}
+</span></span><span style=display:flex><span>    &lt;<span style=color:#f92672>div</span> <span style=color:#a6e22e>class</span><span style=color:#f92672>=</span><span style=color:#e6db74>&#34;flex flex-1 items-center justify-between&#34;</span>&gt;
+</span></span><span style=display:flex><span>        &lt;<span style=color:#f92672>nav</span> <span style=color:#a6e22e>class</span><span style=color:#f92672>=</span><span style=color:#e6db74>&#34;flex space-x-3&#34;</span>&gt;
+</span></span><span style=display:flex><span>
+</span></span><span style=display:flex><span>            {{ if not .Site.Params.disableTextInHeader | default true }}
+</span></span><span style=display:flex><span>            &lt;<span style=color:#f92672>a</span> <span style=color:#a6e22e>href</span><span style=color:#f92672>=</span><span style=color:#e6db74>&#34;{{ &#34;</span><span style=color:#960050;background-color:#1e0010>&#34;</span> <span style=color:#960050;background-color:#1e0010>|</span> <span style=color:#a6e22e>relLangURL</span> <span style=color:#960050;background-color:#1e0010>}}&#34;</span> <span style=color:#a6e22e>class</span><span style=color:#f92672>=</span><span style=color:#e6db74>&#34;text-base font-medium text-gray-500 hover:text-gray-900&#34;</span>&gt;{{
+</span></span><span style=display:flex><span>                .Site.Title | markdownify
+</span></span><span style=display:flex><span>                }}&lt;/<span style=color:#f92672>a</span>&gt;
+</span></span><span style=display:flex><span>            {{ end }}
+</span></span><span style=display:flex><span>
+</span></span><span style=display:flex><span>        &lt;/<span style=color:#f92672>nav</span>&gt;
+</span></span><span style=display:flex><span>        &lt;<span style=color:#f92672>nav</span> <span style=color:#a6e22e>class</span><span style=color:#f92672>=</span><span style=color:#e6db74>&#34;hidden md:flex items-center space-x-5 md:ml-12 h-12&#34;</span>&gt;
+</span></span><span style=display:flex><span>
+</span></span><span style=display:flex><span>            {{ if .Site.Menus.main }}
+</span></span><span style=display:flex><span>            {{ range .Site.Menus.main }}
+</span></span><span style=display:flex><span>            {{ partial &#34;header/header-option.html&#34; . }}
+</span></span><span style=display:flex><span>            {{ end }}
+</span></span><span style=display:flex><span>            {{ end }}
+</span></span><span style=display:flex><span>
+</span></span><span style=display:flex><span>            {{ partial &#34;translations.html&#34; . }}
+</span></span><span style=display:flex><span>
+</span></span><span style=display:flex><span>            {{ if .Site.Params.enableSearch | default false }}
+</span></span><span style=display:flex><span>            &lt;<span style=color:#f92672>button</span> <span style=color:#a6e22e>id</span><span style=color:#f92672>=</span><span style=color:#e6db74>&#34;search-button&#34;</span> <span style=color:#a6e22e>aria-label</span><span style=color:#f92672>=</span><span style=color:#e6db74>&#34;Search&#34;</span> <span style=color:#a6e22e>class</span><span style=color:#f92672>=</span><span style=color:#e6db74>&#34;text-base hover:text-primary-600 dark:hover:text-primary-400&#34;</span>
+</span></span><span style=display:flex><span>                <span style=color:#a6e22e>title</span><span style=color:#f92672>=</span><span style=color:#e6db74>&#34;{{ i18n &#34;</span> <span style=color:#a6e22e>search</span><span style=color:#960050;background-color:#1e0010>.</span><span style=color:#a6e22e>open_button_title</span><span style=color:#960050;background-color:#1e0010>&#34;</span> <span style=color:#960050;background-color:#1e0010>}}&#34;</span>&gt;
+</span></span><span style=display:flex><span>                {{ partial &#34;icon.html&#34; &#34;search&#34; }}
+</span></span><span style=display:flex><span>            &lt;/<span style=color:#f92672>button</span>&gt;
+</span></span><span style=display:flex><span>            {{ end }}
+</span></span><span style=display:flex><span>
+</span></span><span style=display:flex><span>            {{/* Appearance switch */}}
+</span></span><span style=display:flex><span>            {{ if .Site.Params.footer.showAppearanceSwitcher | default false }}
+</span></span><span style=display:flex><span>            &lt;<span style=color:#f92672>div</span>
+</span></span><span style=display:flex><span>                <span style=color:#a6e22e>class</span><span style=color:#f92672>=</span><span style=color:#e6db74>&#34;{{ if .Site.Params.footer.showScrollToTop | default true -}} ltr:mr-14 rtl:ml-14 {{- end }} flex items-center&#34;</span>&gt;
+</span></span><span style=display:flex><span>                &lt;<span style=color:#f92672>button</span> <span style=color:#a6e22e>id</span><span style=color:#f92672>=</span><span style=color:#e6db74>&#34;appearance-switcher&#34;</span> <span style=color:#a6e22e>aria-label</span><span style=color:#f92672>=</span><span style=color:#e6db74>&#34;Dark mode switcher&#34;</span> <span style=color:#a6e22e>type</span><span style=color:#f92672>=</span><span style=color:#e6db74>&#34;button&#34;</span> <span style=color:#a6e22e>class</span><span style=color:#f92672>=</span><span style=color:#e6db74>&#34;text-base hover:text-primary-600 dark:hover:text-primary-400&#34;</span>&gt;
+</span></span><span style=display:flex><span>                    &lt;<span style=color:#f92672>div</span> <span style=color:#a6e22e>class</span><span style=color:#f92672>=</span><span style=color:#e6db74>&#34;flex items-center justify-center dark:hidden&#34;</span>&gt;
+</span></span><span style=display:flex><span>                        {{ partial &#34;icon.html&#34; &#34;moon&#34; }}
+</span></span><span style=display:flex><span>                    &lt;/<span style=color:#f92672>div</span>&gt;
+</span></span><span style=display:flex><span>                    &lt;<span style=color:#f92672>div</span> <span style=color:#a6e22e>class</span><span style=color:#f92672>=</span><span style=color:#e6db74>&#34;items-center justify-center hidden dark:flex&#34;</span>&gt;
+</span></span><span style=display:flex><span>                        {{ partial &#34;icon.html&#34; &#34;sun&#34; }}
+</span></span><span style=display:flex><span>                    &lt;/<span style=color:#f92672>div</span>&gt;
+</span></span><span style=display:flex><span>                &lt;/<span style=color:#f92672>button</span>&gt;
+</span></span><span style=display:flex><span>            &lt;/<span style=color:#f92672>div</span>&gt;
+</span></span><span style=display:flex><span>            {{ end }}
+</span></span><span style=display:flex><span>
+</span></span><span style=display:flex><span>        &lt;/<span style=color:#f92672>nav</span>&gt;
+</span></span><span style=display:flex><span>        &lt;<span style=color:#f92672>div</span> <span style=color:#a6e22e>class</span><span style=color:#f92672>=</span><span style=color:#e6db74>&#34;flex md:hidden items-center space-x-5 md:ml-12 h-12&#34;</span>&gt;
+</span></span><span style=display:flex><span>
+</span></span><span style=display:flex><span>            &lt;<span style=color:#f92672>span</span>&gt;&lt;/<span style=color:#f92672>span</span>&gt;
+</span></span><span style=display:flex><span>
+</span></span><span style=display:flex><span>            {{ partial &#34;translations.html&#34; . }}
+</span></span><span style=display:flex><span>
+</span></span><span style=display:flex><span>            {{ if .Site.Params.enableSearch | default false }}
+</span></span><span style=display:flex><span>            &lt;<span style=color:#f92672>button</span> <span style=color:#a6e22e>id</span><span style=color:#f92672>=</span><span style=color:#e6db74>&#34;search-button-mobile&#34;</span> <span style=color:#a6e22e>aria-label</span><span style=color:#f92672>=</span><span style=color:#e6db74>&#34;Search&#34;</span> <span style=color:#a6e22e>class</span><span style=color:#f92672>=</span><span style=color:#e6db74>&#34;text-base hover:text-primary-600 dark:hover:text-primary-400&#34;</span>
+</span></span><span style=display:flex><span>                <span style=color:#a6e22e>title</span><span style=color:#f92672>=</span><span style=color:#e6db74>&#34;{{ i18n &#34;</span> <span style=color:#a6e22e>search</span><span style=color:#960050;background-color:#1e0010>.</span><span style=color:#a6e22e>open_button_title</span><span style=color:#960050;background-color:#1e0010>&#34;</span> <span style=color:#960050;background-color:#1e0010>}}&#34;</span>&gt;
+</span></span><span style=display:flex><span>                {{ partial &#34;icon.html&#34; &#34;search&#34; }}
+</span></span><span style=display:flex><span>            &lt;/<span style=color:#f92672>button</span>&gt;
+</span></span><span style=display:flex><span>            {{ end }}
+</span></span><span style=display:flex><span>
+</span></span><span style=display:flex><span>            {{/* Appearance switch */}}
+</span></span><span style=display:flex><span>            {{ if .Site.Params.footer.showAppearanceSwitcher | default false }}
+</span></span><span style=display:flex><span>            &lt;<span style=color:#f92672>button</span> <span style=color:#a6e22e>id</span><span style=color:#f92672>=</span><span style=color:#e6db74>&#34;appearance-switcher-mobile&#34;</span> <span style=color:#a6e22e>aria-label</span><span style=color:#f92672>=</span><span style=color:#e6db74>&#34;Dark mode switcher&#34;</span> <span style=color:#a6e22e>type</span><span style=color:#f92672>=</span><span style=color:#e6db74>&#34;button&#34;</span> <span style=color:#a6e22e>class</span><span style=color:#f92672>=</span><span style=color:#e6db74>&#34;text-base hover:text-primary-600 dark:hover:text-primary-400&#34;</span> <span style=color:#a6e22e>style</span><span style=color:#f92672>=</span><span style=color:#e6db74>&#34;margin-right:5px&#34;</span>&gt;
+</span></span><span style=display:flex><span>                &lt;<span style=color:#f92672>div</span> <span style=color:#a6e22e>class</span><span style=color:#f92672>=</span><span style=color:#e6db74>&#34;flex items-center justify-center dark:hidden&#34;</span>&gt;
+</span></span><span style=display:flex><span>                    {{ partial &#34;icon.html&#34; &#34;moon&#34; }}
+</span></span><span style=display:flex><span>                &lt;/<span style=color:#f92672>div</span>&gt;
+</span></span><span style=display:flex><span>                &lt;<span style=color:#f92672>div</span> <span style=color:#a6e22e>class</span><span style=color:#f92672>=</span><span style=color:#e6db74>&#34;items-center justify-center hidden dark:flex&#34;</span>&gt;
+</span></span><span style=display:flex><span>                    {{ partial &#34;icon.html&#34; &#34;sun&#34; }}
+</span></span><span style=display:flex><span>                &lt;/<span style=color:#f92672>div</span>&gt;
+</span></span><span style=display:flex><span>            &lt;/<span style=color:#f92672>button</span>&gt;
+</span></span><span style=display:flex><span>            {{ end }}
+</span></span><span style=display:flex><span>
+</span></span><span style=display:flex><span>        &lt;/<span style=color:#f92672>div</span>&gt;
+</span></span><span style=display:flex><span>    &lt;/<span style=color:#f92672>div</span>&gt;
+</span></span><span style=display:flex><span>    &lt;<span style=color:#f92672>div</span> <span style=color:#a6e22e>class</span><span style=color:#f92672>=</span><span style=color:#e6db74>&#34;-my-2 -mr-2 md:hidden&#34;</span>&gt;
+</span></span><span style=display:flex><span>
+</span></span><span style=display:flex><span>        &lt;<span style=color:#f92672>label</span> <span style=color:#a6e22e>id</span><span style=color:#f92672>=</span><span style=color:#e6db74>&#34;menu-button&#34;</span> <span style=color:#a6e22e>class</span><span style=color:#f92672>=</span><span style=color:#e6db74>&#34;block&#34;</span>&gt;
+</span></span><span style=display:flex><span>            {{ if .Site.Menus.main }}
+</span></span><span style=display:flex><span>            &lt;<span style=color:#f92672>div</span> <span style=color:#a6e22e>class</span><span style=color:#f92672>=</span><span style=color:#e6db74>&#34;cursor-pointer hover:text-primary-600 dark:hover:text-primary-400&#34;</span>&gt;
+</span></span><span style=display:flex><span>                {{ partial &#34;icon.html&#34; &#34;bars&#34; }}
+</span></span><span style=display:flex><span>            &lt;/<span style=color:#f92672>div</span>&gt;
+</span></span><span style=display:flex><span>            &lt;<span style=color:#f92672>div</span> <span style=color:#a6e22e>id</span><span style=color:#f92672>=</span><span style=color:#e6db74>&#34;menu-wrapper&#34;</span> <span style=color:#a6e22e>style</span><span style=color:#f92672>=</span><span style=color:#e6db74>&#34;padding-top:5px;&#34;</span>
+</span></span><span style=display:flex><span>                <span style=color:#a6e22e>class</span><span style=color:#f92672>=</span><span style=color:#e6db74>&#34;fixed inset-0 z-30 invisible w-screen h-screen m-0 overflow-auto transition-opacity opacity-0 cursor-default bg-neutral-100/50 backdrop-blur-sm dark:bg-neutral-900/50&#34;</span>&gt;
+</span></span><span style=display:flex><span>                &lt;<span style=color:#f92672>ul</span>
+</span></span><span style=display:flex><span>                    <span style=color:#a6e22e>class</span><span style=color:#f92672>=</span><span style=color:#e6db74>&#34;flex space-y-2 mt-3 flex-col items-end w-full px-6 py-6 mx-auto overflow-visible list-none ltr:text-right rtl:text-left max-w-7xl&#34;</span>&gt;
+</span></span><span style=display:flex><span>
+</span></span><span style=display:flex><span>                    &lt;<span style=color:#f92672>li</span> <span style=color:#a6e22e>id</span><span style=color:#f92672>=</span><span style=color:#e6db74>&#34;menu-close-button&#34;</span>&gt;
+</span></span><span style=display:flex><span>                        &lt;<span style=color:#f92672>span</span>
+</span></span><span style=display:flex><span>                            <span style=color:#a6e22e>class</span><span style=color:#f92672>=</span><span style=color:#e6db74>&#34;cursor-pointer inline-block align-text-bottom hover:text-primary-600 dark:hover:text-primary-400&#34;</span>&gt;
+</span></span><span style=display:flex><span>                            {{ partial &#34;icon.html&#34; &#34;xmark&#34; }}
+</span></span><span style=display:flex><span>                        &lt;/<span style=color:#f92672>span</span>&gt;
+</span></span><span style=display:flex><span>                    &lt;/<span style=color:#f92672>li</span>&gt;
+</span></span><span style=display:flex><span>
+</span></span><span style=display:flex><span>                    {{ range .Site.Menus.main }}
+</span></span><span style=display:flex><span>                    {{ partial &#34;header/header-mobile-option.html&#34; . }}
+</span></span><span style=display:flex><span>                    {{ end }}
+</span></span><span style=display:flex><span>
+</span></span><span style=display:flex><span>                &lt;/<span style=color:#f92672>ul</span>&gt;
+</span></span><span style=display:flex><span>                {{ if .Site.Menus.subnavigation }}
+</span></span><span style=display:flex><span>                &lt;<span style=color:#f92672>hr</span>&gt;
+</span></span><span style=display:flex><span>                &lt;<span style=color:#f92672>ul</span>
+</span></span><span style=display:flex><span>                    <span style=color:#a6e22e>class</span><span style=color:#f92672>=</span><span style=color:#e6db74>&#34;flex mt-4 flex-col items-end w-full px-6 py-6 mx-auto overflow-visible list-none ltr:text-right rtl:text-left max-w-7xl&#34;</span>&gt;
+</span></span><span style=display:flex><span>                    {{ range .Site.Menus.subnavigation }}
+</span></span><span style=display:flex><span>                    &lt;<span style=color:#f92672>li</span> <span style=color:#a6e22e>class</span><span style=color:#f92672>=</span><span style=color:#e6db74>&#34;mb-1&#34;</span>&gt;
+</span></span><span style=display:flex><span>                        &lt;<span style=color:#f92672>a</span> <span style=color:#a6e22e>href</span><span style=color:#f92672>=</span><span style=color:#e6db74>&#34;{{ .URL }}&#34;</span> <span style=color:#960050;background-color:#1e0010>{{</span> <span style=color:#a6e22e>if</span> <span style=color:#a6e22e>or</span> <span style=color:#960050;background-color:#1e0010>(</span><span style=color:#a6e22e>strings</span><span style=color:#960050;background-color:#1e0010>.</span><span style=color:#a6e22e>HasPrefix</span> <span style=color:#960050;background-color:#1e0010>.</span><span style=color:#a6e22e>URL</span> <span style=color:#960050;background-color:#1e0010>&#34;</span><span style=color:#a6e22e>http:</span><span style=color:#960050;background-color:#1e0010>&#34;</span> <span style=color:#960050;background-color:#1e0010>)</span> <span style=color:#960050;background-color:#1e0010>(</span><span style=color:#a6e22e>strings</span><span style=color:#960050;background-color:#1e0010>.</span><span style=color:#a6e22e>HasPrefix</span> <span style=color:#960050;background-color:#1e0010>.</span><span style=color:#a6e22e>URL</span> <span style=color:#960050;background-color:#1e0010>&#34;</span><span style=color:#a6e22e>https:</span><span style=color:#960050;background-color:#1e0010>&#34;</span> <span style=color:#960050;background-color:#1e0010>)</span> <span style=color:#960050;background-color:#1e0010>}}</span> <span style=color:#a6e22e>target</span><span style=color:#f92672>=</span><span style=color:#e6db74>&#34;_blank&#34;</span> <span style=color:#960050;background-color:#1e0010>{{</span> <span style=color:#a6e22e>end</span> <span style=color:#960050;background-color:#1e0010>}}</span> <span style=color:#a6e22e>class</span><span style=color:#f92672>=</span><span style=color:#e6db74>&#34;flex items-center&#34;</span>&gt;
+</span></span><span style=display:flex><span>                            {{ if .Pre }}
+</span></span><span style=display:flex><span>                            &lt;<span style=color:#f92672>span</span> <span style=color:#960050;background-color:#1e0010>{{</span> <span style=color:#a6e22e>if</span> <span style=color:#a6e22e>and</span> <span style=color:#960050;background-color:#1e0010>.</span><span style=color:#a6e22e>Pre</span> <span style=color:#960050;background-color:#1e0010>.</span><span style=color:#a6e22e>Name</span><span style=color:#960050;background-color:#1e0010>}}</span> <span style=color:#a6e22e>class</span><span style=color:#f92672>=</span><span style=color:#e6db74>&#34;mr-3&#34;</span> <span style=color:#960050;background-color:#1e0010>{{</span> <span style=color:#a6e22e>end</span> <span style=color:#960050;background-color:#1e0010>}}</span>&gt;
+</span></span><span style=display:flex><span>                                {{ partial &#34;icon.html&#34; .Pre }}
+</span></span><span style=display:flex><span>                            &lt;/<span style=color:#f92672>span</span>&gt;
+</span></span><span style=display:flex><span>                            {{ end }}
+</span></span><span style=display:flex><span>                            &lt;<span style=color:#f92672>p</span> <span style=color:#a6e22e>class</span><span style=color:#f92672>=</span><span style=color:#e6db74>&#34;text-sm font-sm text-gray-500 hover:text-gray-900&#34;</span> <span style=color:#a6e22e>title</span><span style=color:#f92672>=</span><span style=color:#e6db74>&#34;{{ .Title }}&#34;</span>&gt;
+</span></span><span style=display:flex><span>                                {{ .Name | markdownify }}
+</span></span><span style=display:flex><span>                            &lt;/<span style=color:#f92672>p</span>&gt;
+</span></span><span style=display:flex><span>                        &lt;/<span style=color:#f92672>a</span>&gt;
+</span></span><span style=display:flex><span>                    &lt;/<span style=color:#f92672>li</span>&gt;
+</span></span><span style=display:flex><span>                    {{ end }}
+</span></span><span style=display:flex><span>                &lt;/<span style=color:#f92672>ul</span>&gt;
+</span></span><span style=display:flex><span>                {{ end }}
+</span></span><span style=display:flex><span>            &lt;/<span style=color:#f92672>div</span>&gt;
+</span></span><span style=display:flex><span>            {{ end }}
+</span></span><span style=display:flex><span>        &lt;/<span style=color:#f92672>label</span>&gt;
+</span></span><span style=display:flex><span>    &lt;/<span style=color:#f92672>div</span>&gt;
+</span></span><span style=display:flex><span>&lt;/<span style=color:#f92672>div</span>&gt;
+</span></span><span style=display:flex><span>
+</span></span><span style=display:flex><span>{{ if .Site.Menus.subnavigation }}
+</span></span><span style=display:flex><span>&lt;<span style=color:#f92672>div</span> <span style=color:#a6e22e>class</span><span style=color:#f92672>=</span><span style=color:#e6db74>&#34;main-menu flex pb-2 flex-col items-end justify-between md:justify-start space-x-3&#34;</span> 
+</span></span><span style=display:flex><span>    <span style=color:#a6e22e>style</span><span style=color:#f92672>=</span><span style=color:#e6db74>&#34;
+</span></span></span><span style=display:flex><span><span style=color:#e6db74>    position: fixed;
+</span></span></span><span style=display:flex><span><span style=color:#e6db74>    top: 65px;
+</span></span></span><span style=display:flex><span><span style=color:#e6db74>    left: 50%;
+</span></span></span><span style=display:flex><span><span style=color:#e6db74>    transform: translateX(-50%);
+</span></span></span><span style=display:flex><span><span style=color:#e6db74>    width: 90%;  /* 移动端宽度更大 */
+</span></span></span><span style=display:flex><span><span style=color:#e6db74>    max-width: 900px;
+</span></span></span><span style=display:flex><span><span style=color:#e6db74>    background: linear-gradient(
+</span></span></span><span style=display:flex><span><span style=color:#e6db74>        135deg, 
+</span></span></span><span style=display:flex><span><span style=color:#e6db74>        rgba(255, 255, 255, 0.4),
+</span></span></span><span style=display:flex><span><span style=color:#e6db74>        rgba(147, 197, 253, 0.3) 20%,
+</span></span></span><span style=display:flex><span><span style=color:#e6db74>        rgba(167, 243, 208, 0.35) 50%,
+</span></span></span><span style=display:flex><span><span style=color:#e6db74>        rgba(147, 197, 253, 0.3) 80%,
+</span></span></span><span style=display:flex><span><span style=color:#e6db74>        rgba(110, 231, 183, 0.35)
+</span></span></span><span style=display:flex><span><span style=color:#e6db74>    );
+</span></span></span><span style=display:flex><span><span style=color:#e6db74>    backdrop-filter: blur(8px);
+</span></span></span><span style=display:flex><span><span style=color:#e6db74>    border: 1px solid rgba(255, 255, 255, 0.45);
+</span></span></span><span style=display:flex><span><span style=color:#e6db74>    border-radius: 0.75rem;  /* 移动端圆角稍小 */
+</span></span></span><span style=display:flex><span><span style=color:#e6db74>    box-shadow: 
+</span></span></span><span style=display:flex><span><span style=color:#e6db74>        0 4px 6px rgba(0, 0, 0, 0.03),
+</span></span></span><span style=display:flex><span><span style=color:#e6db74>        0 1px 3px rgba(147, 197, 253, 0.2) inset,
+</span></span></span><span style=display:flex><span><span style=color:#e6db74>        0 2px 6px rgba(167, 243, 208, 0.15) inset;
+</span></span></span><span style=display:flex><span><span style=color:#e6db74>    z-index: 999;
+</span></span></span><span style=display:flex><span><span style=color:#e6db74>    padding: 0.25rem;  /* 移动端内边距更小 */
+</span></span></span><span style=display:flex><span><span style=color:#e6db74>    transition: all 0.3s ease;
+</span></span></span><span style=display:flex><span><span style=color:#e6db74>    @media (min-width: 768px) {  /* 桌面端样式 */
+</span></span></span><span style=display:flex><span><span style=color:#e6db74>        width: 70%;
+</span></span></span><span style=display:flex><span><span style=color:#e6db74>        padding: 0.25rem 0.5rem;
+</span></span></span><span style=display:flex><span><span style=color:#e6db74>        border-radius: 1rem;
+</span></span></span><span style=display:flex><span><span style=color:#e6db74>    }
+</span></span></span><span style=display:flex><span><span style=color:#e6db74>    &#34;</span>&gt;
+</span></span><span style=display:flex><span>    &lt;<span style=color:#f92672>div</span> <span style=color:#a6e22e>class</span><span style=color:#f92672>=</span><span style=color:#e6db74>&#34;hidden md:flex items-center space-x-5&#34;</span>&gt;
+</span></span><span style=display:flex><span>        {{ range .Site.Menus.subnavigation }}
+</span></span><span style=display:flex><span>        &lt;<span style=color:#f92672>a</span> <span style=color:#a6e22e>href</span><span style=color:#f92672>=</span><span style=color:#e6db74>&#34;{{ .URL }}&#34;</span> <span style=color:#960050;background-color:#1e0010>{{</span> <span style=color:#a6e22e>if</span> <span style=color:#a6e22e>or</span> <span style=color:#960050;background-color:#1e0010>(</span><span style=color:#a6e22e>strings</span><span style=color:#960050;background-color:#1e0010>.</span><span style=color:#a6e22e>HasPrefix</span> <span style=color:#960050;background-color:#1e0010>.</span><span style=color:#a6e22e>URL</span> <span style=color:#960050;background-color:#1e0010>&#34;</span><span style=color:#a6e22e>http:</span><span style=color:#960050;background-color:#1e0010>&#34;</span> <span style=color:#960050;background-color:#1e0010>)</span> <span style=color:#960050;background-color:#1e0010>(</span><span style=color:#a6e22e>strings</span><span style=color:#960050;background-color:#1e0010>.</span><span style=color:#a6e22e>HasPrefix</span> <span style=color:#960050;background-color:#1e0010>.</span><span style=color:#a6e22e>URL</span> <span style=color:#960050;background-color:#1e0010>&#34;</span><span style=color:#a6e22e>https:</span><span style=color:#960050;background-color:#1e0010>&#34;</span> <span style=color:#960050;background-color:#1e0010>)</span> <span style=color:#960050;background-color:#1e0010>}}</span>
+</span></span><span style=display:flex><span>            <span style=color:#a6e22e>target</span><span style=color:#f92672>=</span><span style=color:#e6db74>&#34;_blank&#34;</span> <span style=color:#960050;background-color:#1e0010>{{</span> <span style=color:#a6e22e>end</span> <span style=color:#960050;background-color:#1e0010>}}</span> <span style=color:#a6e22e>class</span><span style=color:#f92672>=</span><span style=color:#e6db74>&#34;flex items-center&#34;</span>&gt;
+</span></span><span style=display:flex><span>            {{ if .Pre }}
+</span></span><span style=display:flex><span>            &lt;<span style=color:#f92672>span</span> <span style=color:#960050;background-color:#1e0010>{{</span> <span style=color:#a6e22e>if</span> <span style=color:#a6e22e>and</span> <span style=color:#960050;background-color:#1e0010>.</span><span style=color:#a6e22e>Pre</span> <span style=color:#960050;background-color:#1e0010>.</span><span style=color:#a6e22e>Name</span><span style=color:#960050;background-color:#1e0010>}}</span> <span style=color:#a6e22e>class</span><span style=color:#f92672>=</span><span style=color:#e6db74>&#34;mr-1&#34;</span> <span style=color:#960050;background-color:#1e0010>{{</span> <span style=color:#a6e22e>end</span> <span style=color:#960050;background-color:#1e0010>}}</span>&gt;
+</span></span><span style=display:flex><span>                {{ partial &#34;icon.html&#34; .Pre }}
+</span></span><span style=display:flex><span>            &lt;/<span style=color:#f92672>span</span>&gt;
+</span></span><span style=display:flex><span>            {{ end }}
+</span></span><span style=display:flex><span>            &lt;<span style=color:#f92672>p</span> <span style=color:#a6e22e>class</span><span style=color:#f92672>=</span><span style=color:#e6db74>&#34;text-xs font-light text-gray-500 hover:text-gray-900&#34;</span> <span style=color:#a6e22e>title</span><span style=color:#f92672>=</span><span style=color:#e6db74>&#34;{{ .Title }}&#34;</span>&gt;
+</span></span><span style=display:flex><span>                {{ .Name | markdownify }}
+</span></span><span style=display:flex><span>            &lt;/<span style=color:#f92672>p</span>&gt;
+</span></span><span style=display:flex><span>        &lt;/<span style=color:#f92672>a</span>&gt;
+</span></span><span style=display:flex><span>        {{ end }}
+</span></span><span style=display:flex><span>    &lt;/<span style=color:#f92672>div</span>&gt;
+</span></span><span style=display:flex><span>&lt;/<span style=color:#f92672>div</span>&gt;
+</span></span><span style=display:flex><span>{{ end }}
+</span></span><span style=display:flex><span>
+</span></span><span style=display:flex><span>{{ if .Site.Params.highlightCurrentMenuArea }}
+</span></span><span style=display:flex><span>&lt;<span style=color:#f92672>script</span>&gt;
+</span></span><span style=display:flex><span>    (<span style=color:#66d9ef>function</span> () {
+</span></span><span style=display:flex><span>        <span style=color:#66d9ef>var</span> <span style=color:#a6e22e>$mainmenu</span> <span style=color:#f92672>=</span> <span style=color:#a6e22e>$</span>(<span style=color:#e6db74>&#39;.main-menu&#39;</span>);
+</span></span><span style=display:flex><span>        <span style=color:#66d9ef>var</span> <span style=color:#a6e22e>path</span> <span style=color:#f92672>=</span> window.<span style=color:#a6e22e>location</span>.<span style=color:#a6e22e>pathname</span>;
+</span></span><span style=display:flex><span>        <span style=color:#a6e22e>$mainmenu</span>.<span style=color:#a6e22e>find</span>(<span style=color:#e6db74>&#39;a[href=&#34;&#39;</span> <span style=color:#f92672>+</span> <span style=color:#a6e22e>path</span> <span style=color:#f92672>+</span> <span style=color:#e6db74>&#39;&#34;]&#39;</span>).<span style=color:#a6e22e>each</span>(<span style=color:#66d9ef>function</span> (<span style=color:#a6e22e>i</span>, <span style=color:#a6e22e>e</span>) {
+</span></span><span style=display:flex><span>            <span style=color:#a6e22e>$</span>(<span style=color:#a6e22e>e</span>).<span style=color:#a6e22e>children</span>(<span style=color:#e6db74>&#39;p&#39;</span>).<span style=color:#a6e22e>addClass</span>(<span style=color:#e6db74>&#39;active&#39;</span>);
+</span></span><span style=display:flex><span>        });
+</span></span><span style=display:flex><span>    })();
+</span></span><span style=display:flex><span>&lt;/<span style=color:#f92672>script</span>&gt;
+</span></span><span style=display:flex><span>{{ end }}
+</span></span><span style=display:flex><span>
+</span></span><span style=display:flex><span><span style=color:#75715e>&lt;!-- 更新主内容区域的上边距 --&gt;</span>
+</span></span><span style=display:flex><span>&lt;<span style=color:#f92672>style</span>&gt;
+</span></span><span style=display:flex><span>    <span style=color:#f92672>main</span> {
+</span></span><span style=display:flex><span>        <span style=color:#66d9ef>margin-top</span>: <span style=color:#ae81ff>60</span><span style=color:#66d9ef>px</span> <span style=color:#75715e>!important</span>;  <span style=color:#75715e>/* 移动端上边距更小 */</span>
+</span></span><span style=display:flex><span>    }
+</span></span><span style=display:flex><span>    .<span style=color:#a6e22e>has-submenu</span> <span style=color:#f92672>main</span> {
+</span></span><span style=display:flex><span>        <span style=color:#66d9ef>margin-top</span>: <span style=color:#ae81ff>100</span><span style=color:#66d9ef>px</span> <span style=color:#75715e>!important</span>;  <span style=color:#75715e>/* 移动端上边距更小 */</span>
+</span></span><span style=display:flex><span>    }
+</span></span><span style=display:flex><span>    @<span style=color:#66d9ef>media</span> <span style=color:#f92672>(</span><span style=color:#f92672>min-width</span><span style=color:#f92672>:</span> <span style=color:#f92672>768px</span><span style=color:#f92672>)</span> {
+</span></span><span style=display:flex><span>        <span style=color:#f92672>main</span> {
+</span></span><span style=display:flex><span>            <span style=color:#66d9ef>margin-top</span>: <span style=color:#ae81ff>80</span><span style=color:#66d9ef>px</span> <span style=color:#75715e>!important</span>;  <span style=color:#75715e>/* 桌面端保持原有上边距 */</span>
+</span></span><span style=display:flex><span>        }
+</span></span><span style=display:flex><span>        .<span style=color:#a6e22e>has-submenu</span> <span style=color:#f92672>main</span> {
+</span></span><span style=display:flex><span>            <span style=color:#66d9ef>margin-top</span>: <span style=color:#ae81ff>120</span><span style=color:#66d9ef>px</span> <span style=color:#75715e>!important</span>;  <span style=color:#75715e>/* 桌面端保持原有上边距 */</span>
+</span></span><span style=display:flex><span>        }
+</span></span><span style=display:flex><span>    }
+</span></span><span style=display:flex><span>&lt;/<span style=color:#f92672>style</span>&gt;
+</span></span><span style=display:flex><span>
+</span></span><span style=display:flex><span><span style=color:#75715e>&lt;!-- 检测是否有子导航菜单并添加类名 --&gt;</span>
+</span></span><span style=display:flex><span>&lt;<span style=color:#f92672>script</span>&gt;
+</span></span><span style=display:flex><span>    <span style=color:#66d9ef>if</span> (document.<span style=color:#a6e22e>querySelector</span>(<span style=color:#e6db74>&#39;.main-menu + .main-menu&#39;</span>)) {
+</span></span><span style=display:flex><span>        document.<span style=color:#a6e22e>body</span>.<span style=color:#a6e22e>classList</span>.<span style=color:#a6e22e>add</span>(<span style=color:#e6db74>&#39;has-submenu&#39;</span>);
+</span></span><span style=display:flex><span>    }
+</span></span><span style=display:flex><span>&lt;/<span style=color:#f92672>script</span>&gt;
+</span></span></code></pre></div></div></div></div><p>该菜单栏样式也能适配移动端（也是问的ai），有一部分注释，一些位置可以根据自己的需要调整。</p><p>现在大模型的能力确实发展到了一个比较高的水平。至少在代码方面，大模型能够理解页面代码的逻辑结构，同时如果有比较明确的提问的话，模型确实有一键直达的能力。目前大模型缺乏的主要是一些想象能力和创造能力，这意味着，如果你提出的需求太过空泛或者指意不明，你几乎不会获得一个满意的结果。比如你在描述时如果使用太多诸如精致，新颖，科技感等广泛的形容词，模型很大可能会给你加一些看起来有些简单的元素。正如一千个人的心中就有一千个哈姆雷特，模型并不知道这些形容词背后的你是怎么想的。而且天下没有免费的午餐，你不花点心思提问，大模型为什么要深入思考而不偷点懒呢，可能大模型本身就认为最简单的就是最好的，对节约算力和能源也是有好处的。</p></div><div class=pt-3><hr class="border-dotted border-neutral-300 dark:border-neutral-600"><div class=pt-3><head><link rel=stylesheet href=https://unpkg.com/@waline/client@v2/dist/waline.css></head><body><div id=waline></div><script type=module>
+    import { init } from 'https://unpkg.com/@waline/client@v2/dist/waline.mjs';
+
+    init({
+      el: '#waline',
+      serverURL: 'https://waline.foraeu.top/',
+      lang: 'zh-CN',
+      
+      wordLimit: 500,
+      search: false,
+      pageview: true,
+      dark: 'html[class="scroll-smooth dark"]',
+    });
+  </script></body></div></div></article></div></main><footer><div class=container><div class=footer-content><div class=copyright>© 2024-2025 <span class=author>foraeu</span></div></div></div></footer></body></html>

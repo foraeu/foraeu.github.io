@@ -1,0 +1,211 @@
+.music-chart {
+    max-width: 800px;
+    margin: 2rem auto;
+    padding: 2rem;
+    background: #fff;
+    border-radius: 20px;
+    box-shadow: 0 8px 30px rgba(0,0,0,0.1);
+}
+
+.chart-title {
+    text-align: center;
+    color: #1a1a1a;
+    font-size: 2.5rem;
+    margin-bottom: 2rem;
+    background: linear-gradient(45deg, #FF6B6B, #4ECDC4);
+    background-clip: text;
+    -webkit-background-clip: text;
+    -webkit-text-fill-color: transparent;
+}
+
+.chart-list {
+    display: flex;
+    flex-direction: column;
+    gap: 1rem;
+    transition: opacity 0.3s ease;
+}
+
+.chart-list.hidden {
+    display: none;
+    opacity: 0;
+}
+
+.song-item {
+    display: flex;
+    align-items: center;
+    padding: 1rem 1.5rem;
+    background: #f8f9fa;
+    border-radius: 12px;
+    transition: transform 0.2s ease, box-shadow 0.2s ease;
+    animation: fadeIn 0.5s ease-out forwards;
+    animation-delay: calc(var(--i) * 0.1s);
+}
+
+.song-item:hover {
+    transform: translateY(-2px);
+    box-shadow: 0 5px 15px rgba(0,0,0,0.1);
+    background: linear-gradient(45deg, #f8f9fa, #ffffff);
+}
+
+.rank {
+    font-size: 1.5rem;
+    font-weight: bold;
+    color: #FF6B6B;
+    min-width: 40px;
+}
+
+.song-info {
+    flex-grow: 1;
+    margin-left: 1rem;
+}
+
+.song-info h3 {
+    margin: 0;
+    font-size: 1.1rem;
+    color: #1a1a1a;
+}
+
+.song-info p {
+    margin: 0.3rem 0 0;
+    font-size: 0.9rem;
+    color: #666;
+}
+
+.duration {
+    color: #888;
+    font-size: 0.9rem;
+}
+
+@media (max-width: 600px) {
+    .music-chart {
+        margin: 1rem;
+        padding: 1rem;
+    }
+    
+    .chart-title {
+        font-size: 2rem;
+    }
+    
+    .song-item {
+        padding: 0.8rem 1rem;
+    }
+}
+
+/* 添加动画效果 */
+@keyframes fadeIn {
+    from {
+        opacity: 0;
+        transform: translateY(20px);
+    }
+    to {
+        opacity: 1;
+        transform: translateY(0);
+    }
+}
+
+/* 年份切换样式 */
+.year-selector {
+    position: relative;
+    height: 60px;
+    margin: 2rem auto;
+    perspective: 1000px;
+    max-width: 800px; /* 增加宽度确保空间充足 */
+    display: flex;
+    align-items: center;
+    justify-content: center;
+}
+
+.year-carousel {
+    position: relative;
+    height: 100%;
+    width: 600px; /* 固定宽度 */
+    transform-style: preserve-3d;
+    transition: transform 0.6s ease;
+}
+
+.year-btn {
+    position: absolute;
+    width: 120px;
+    height: 40px;
+    left: calc(50% - 60px); /* 居中定位 */
+    top: 50%;
+    transform-origin: center;
+    transform: translateY(-50%) rotateY(0deg) translateZ(150px);
+    backface-visibility: hidden;
+    cursor: pointer;
+    border: none;
+    border-radius: 20px;
+    background: #f0f0f0;
+    color: #666;
+    transition: all 0.3s ease;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    font-size: 1rem;
+}
+
+.year-btn.active {
+    background: linear-gradient(45deg, #FF6B6B, #4ECDC4);
+    color: white;
+    box-shadow: 0 2px 10px rgba(0,0,0,0.1);
+}
+
+.carousel-nav {
+    position: absolute;
+    width: 100%;
+    display: flex;
+    justify-content: space-between;
+    pointer-events: none; /* 防止影响中间的交互 */
+    max-width: 650px; /* 减小最大宽度 */
+    left: 50%;
+    transform: translateX(-50%); /* 居中定位 */
+}
+
+.carousel-nav button {
+    pointer-events: auto; /* 恢复按钮的交互 */
+    background: none;
+    border: none;
+    color: transparent;
+    cursor: pointer;
+    width: 40px;
+    height: 40px;
+    padding: 0;
+    position: relative;
+    transition: transform 0.3s ease;
+}
+
+.prev-btn {
+    margin-left: 10px; /* 减小左侧间距 */
+}
+
+.next-btn {
+    margin-right: 10px; /* 减小右侧间距 */
+}
+
+/* 修改箭头样式 */
+.carousel-nav button::before {
+    content: '';
+    position: absolute;
+    top: 50%;
+    left: 50%;
+    width: 12px;
+    height: 12px;
+    border-left: 3px solid #666;
+    border-bottom: 3px solid #666;
+}
+
+.prev-btn::before {
+    transform: translate(-25%, -50%) rotate(45deg);
+}
+
+.next-btn::before {
+    transform: translate(-75%, -50%) rotate(225deg);
+}
+
+.carousel-nav button:hover::before {
+    border-color: #FF6B6B;
+}
+
+.carousel-nav button:hover {
+    transform: scale(1.1);
+}
